@@ -1,8 +1,100 @@
 
+"use client";
+
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Briefcase, GraduationCap, Linkedin, Github, Instagram, AtSign, CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, Container, PenTool, ExternalLink, Brain, DatabaseZap, AppWindow, Terminal } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+// Sample Data (replace with your actual data)
+const projectData = [
+  {
+    title: 'AI Powered E-commerce Platform',
+    description: 'A full-stack e-commerce site with AI-driven product recommendations and personalized shopping experiences.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'e-commerce ai',
+    projectUrl: '#',
+    techStack: ['Next.js', 'Genkit', 'Tailwind CSS', 'Firebase'],
+  },
+  {
+    title: 'Interactive Data Visualization Dashboard',
+    description: 'A web application for visualizing complex datasets with interactive charts and filters, built with React and D3.js.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'dashboard data',
+    projectUrl: '#',
+    techStack: ['React', 'D3.js', 'Node.js', 'ShadCN UI'],
+  },
+  {
+    title: 'Mobile-First Social Networking App',
+    description: 'A cross-platform mobile app focusing on local community engagement, featuring real-time chat and event organization.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'mobile social',
+    projectUrl: '#',
+    techStack: ['React Native', 'Firebase', 'TypeScript'],
+  },
+];
+
+const skillsData = {
+  frontend: [
+    { name: 'HTML5', icon: <CodeXml className="w-10 h-10" /> },
+    { name: 'CSS3', icon: <Palette className="w-10 h-10" /> },
+    { name: 'JavaScript (ES6+)', icon: <FileCode2 className="w-10 h-10" /> },
+    { name: 'TypeScript', icon: <FileCode2 className="w-10 h-10" /> },
+    { name: 'React', icon: <CodeXml className="w-10 h-10" /> },
+    { name: 'Next.js', icon: <AppWindow className="w-10 h-10" /> },
+    { name: 'Tailwind CSS', icon: <Palette className="w-10 h-10" /> },
+  ],
+  backend: [
+    { name: 'Node.js', icon: <ServerCog className="w-10 h-10" /> },
+    { name: 'Express.js', icon: <ServerCog className="w-10 h-10" /> },
+    { name: 'Python', icon: <Terminal className="w-10 h-10" /> },
+    { name: 'Genkit', icon: <Brain className="w-10 h-10" /> },
+  ],
+  databases: [
+    { name: 'MongoDB', icon: <Database className="w-10 h-10" /> },
+    { name: 'PostgreSQL', icon: <Database className="w-10 h-10" /> },
+    { name: 'Firebase', icon: <DatabaseZap className="w-10 h-10" /> },
+  ],
+  tools: [
+    { name: 'Git & GitHub', icon: <GitFork className="w-10 h-10" /> },
+    { name: 'Docker', icon: <Container className="w-10 h-10" /> },
+    { name: 'VS Code', icon: <CodeXml className="w-10 h-10" /> },
+    { name: 'Figma', icon: <PenTool className="w-10 h-10" /> },
+  ],
+};
+
+const socialLinks = [
+  { name: 'LinkedIn', icon: <Linkedin className="w-6 h-6" />, url: '#' },
+  { name: 'GitHub', icon: <Github className="w-6 h-6" />, url: '#' },
+  { name: 'Threads', icon: <AtSign className="w-6 h-6" />, url: '#' },
+  { name: 'Instagram', icon: <Instagram className="w-6 h-6" />, url: '#' },
+];
+
 export default function HomePage() {
+  const [activeAboutTab, setActiveAboutTab] = useState<'experience' | 'education'>('experience');
+
+  const SkillCategory = ({ title, skills }: { title: string, skills: { name: string, icon: React.ReactNode }[] }) => (
+    <div className="mb-8">
+      <h3 className="text-2xl font-semibold text-primary mb-6 text-center">{title}</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {skills.map((skill) => (
+          <div key={skill.name} className="flex flex-col items-center p-4 bg-card rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <div className="p-3 mb-3 rounded-full bg-accent/10 text-accent">
+              {skill.icon}
+            </div>
+            <span className="text-sm font-medium text-center text-foreground">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <>
-      {/* Placeholder for Hero Section */}
+      {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary">
         <div className="text-center p-4">
           <h1 className="text-5xl font-bold text-primary mb-4">Welcome to Devfolio</h1>
@@ -10,37 +102,174 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Placeholder for About Me Section */}
+      {/* About Me Section */}
       <section id="about" className="min-h-screen flex items-center justify-center bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-primary mb-12">About Me</h2>
-          <p className="text-lg text-foreground max-w-2xl mx-auto">This section will introduce the developer.</p>
+        <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+          <h2 className="text-4xl font-bold text-primary mb-12">About Me</h2>
+          <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
+            <p className="text-lg text-foreground leading-relaxed mb-8">
+              Hello! I'm a passionate and dedicated developer with a knack for creating elegant and efficient solutions.
+              My journey in tech has been driven by a constant curiosity and a desire to build impactful applications.
+              I thrive in collaborative environments and enjoy tackling complex challenges.
+            </p>
+            <div className="flex justify-center space-x-4 mb-8">
+              <Button
+                onClick={() => setActiveAboutTab('experience')}
+                variant={activeAboutTab === 'experience' ? 'default' : 'outline'}
+                className="gap-2"
+              >
+                <Briefcase /> Experience
+              </Button>
+              <Button
+                onClick={() => setActiveAboutTab('education')}
+                variant={activeAboutTab === 'education' ? 'default' : 'outline'}
+                className="gap-2"
+              >
+                <GraduationCap /> Education & Certs
+              </Button>
+            </div>
+
+            {activeAboutTab === 'experience' && (
+              <div className="text-left space-y-4 p-6 bg-secondary/50 rounded-lg">
+                <h3 className="text-xl font-semibold text-primary mb-3">Professional Experience</h3>
+                <div className="mb-4">
+                  <h4 className="text-lg font-medium text-foreground">Senior Developer at Tech Solutions Inc.</h4>
+                  <p className="text-sm text-muted-foreground">Jan 2021 - Present</p>
+                  <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1">
+                    <li>Led development of key features for a major SaaS product.</li>
+                    <li>Mentored junior developers and improved code quality standards.</li>
+                    <li>Collaborated with cross-functional teams to deliver projects on time.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-foreground">Software Engineer at Web Innovators LLC</h4>
+                  <p className="text-sm text-muted-foreground">Jun 2018 - Dec 2020</p>
+                   <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1">
+                    <li>Developed and maintained full-stack web applications.</li>
+                    <li>Contributed to API design and database architecture.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            {activeAboutTab === 'education' && (
+              <div className="text-left space-y-4 p-6 bg-secondary/50 rounded-lg">
+                <h3 className="text-xl font-semibold text-primary mb-3">Education & Certifications</h3>
+                 <div className="mb-4">
+                  <h4 className="text-lg font-medium text-foreground">M.Sc. in Computer Science - University of Tech</h4>
+                  <p className="text-sm text-muted-foreground">Graduated: May 2018</p>
+                  <p className="text-foreground/80 mt-1">Specialized in Software Engineering and AI.</p>
+                </div>
+                <div className="mb-4">
+                  <h4 className="text-lg font-medium text-foreground">B.Sc. in Information Technology - State College</h4>
+                  <p className="text-sm text-muted-foreground">Graduated: May 2016</p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-foreground">Certified Next.js Developer</h4>
+                  <p className="text-sm text-muted-foreground">Issued: Mar 2022</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* Placeholder for Projects Section */}
+      {/* Projects Section */}
       <section id="projects" className="min-h-screen flex items-center justify-center bg-secondary">
-         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-primary text-center mb-12">Projects</h2>
-          <p className="text-lg text-foreground max-w-2xl mx-auto">Showcasing various projects developed.</p>
+         <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+          <h2 className="text-4xl font-bold text-primary text-center mb-16">My Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {projectData.map((project, index) => (
+              <Card key={index} className="flex flex-col overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 rounded-xl">
+                <CardHeader className="p-0">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    width={600}
+                    height={400}
+                    className="w-full h-48 object-cover"
+                    data-ai-hint={project.imageHint}
+                  />
+                </CardHeader>
+                <CardContent className="flex-grow p-6 space-y-3">
+                  <CardTitle className="text-xl text-primary">{project.title}</CardTitle>
+                  <CardDescription className="text-foreground/80 text-sm leading-relaxed">
+                    {project.description}
+                  </CardDescription>
+                  <div className="pt-2">
+                    <h4 className="text-xs font-semibold text-muted-foreground mb-1">TECH STACK:</h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.techStack.map(tech => (
+                        <span key={tech} className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded-full">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="p-6 bg-muted/50">
+                  <Button asChild variant="default" className="w-full gap-2">
+                    <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                      View Project <ExternalLink className="w-4 h-4" />
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Placeholder for Skills Section */}
+      {/* Skills Section */}
       <section id="skills" className="min-h-screen flex items-center justify-center bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-primary text-center mb-12">Skills & Tech Stack</h2>
-          <p className="text-lg text-foreground max-w-2xl mx-auto">Detailing technical skills and proficiency.</p>
+        <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+          <h2 className="text-4xl font-bold text-primary text-center mb-16">Skills & Tech Stack</h2>
+          <div className="max-w-5xl mx-auto">
+            <SkillCategory title="Frontend Development" skills={skillsData.frontend} />
+            <SkillCategory title="Backend Development" skills={skillsData.backend} />
+            <SkillCategory title="Databases" skills={skillsData.databases} />
+            <SkillCategory title="Tools & Platforms" skills={skillsData.tools} />
+            <p className="mt-12 text-sm text-muted-foreground">
+              Note: Icons are representative. For a richer display, consider replacing them with official SVG logos.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Placeholder for Contact Section */}
+      {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center justify-center bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-primary text-center mb-12">Contact Me</h2>
-          <p className="text-lg text-foreground max-w-2xl mx-auto">Contact form and social media links will be here.</p>
+        <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+          <h2 className="text-4xl font-bold text-primary text-center mb-8">Get In Touch</h2>
+          <p className="text-lg text-foreground max-w-xl mx-auto mb-12">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of something amazing.
+            Feel free to reach out!
+          </p>
+          <div className="bg-card p-8 rounded-xl shadow-xl max-w-md mx-auto">
+            {/* Placeholder for a contact form - can be built out later */}
+            <div className="mb-8">
+              <p className="text-foreground">
+                The best way to reach me is via email at: <a href="mailto:your.email@example.com" className="text-accent hover:underline font-medium">your.email@example.com</a>
+              </p>
+            </div>
+            
+            <h3 className="text-xl font-semibold text-primary mb-4">Connect with me:</h3>
+            <div className="flex justify-center space-x-6">
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`My ${social.name} profile`}
+                  className="text-foreground hover:text-accent transition-colors duration-300 p-2 rounded-full hover:bg-accent/10"
+                >
+                  {social.icon}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
   );
 }
+
+    
