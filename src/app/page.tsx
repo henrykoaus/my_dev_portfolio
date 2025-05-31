@@ -11,7 +11,7 @@ import {
   CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, 
   PenTool, ExternalLink, Brain, AppWindow, Terminal, 
   ChevronDown, ChevronUp, Gem, Smartphone, Cloud, CloudCog, Server, 
-  LayoutPanelTop, Store, LayoutGrid, ShoppingCart, ImageIcon as ImageIconLucide, // Renamed to avoid conflict
+  LayoutPanelTop, Store, LayoutGrid, ShoppingCart, ImageIcon as ImageIconLucide,
   NotebookText, ClipboardList, SearchCheck, TerminalSquare, 
   Waypoints, Blocks, Zap, Gauge, Rocket, MonitorSmartphone, Laptop, UploadCloud, HardDrive,
   Accessibility as AccessibilityIcon 
@@ -328,11 +328,11 @@ export default function HomePage() {
             {activeAboutTab === 'experience' && (
               <div className="text-left space-y-6 p-6 bg-secondary/50 rounded-lg">
                 <h3 className="text-xl font-semibold text-primary mb-4">Professional Experience</h3>
-                {experienceData.slice(0, 2).map((exp, index) => (
+                {experienceData.slice(0, 1).map((exp, index) => (
                   <ExperienceEntry key={index} experience={exp} />
                 ))}
                 
-                {experienceData.length > 2 && (
+                {experienceData.length > 1 && (
                   <Button 
                     onClick={() => setIsExperienceExpanded(!isExperienceExpanded)} 
                     variant="outline" 
@@ -343,8 +343,8 @@ export default function HomePage() {
                   </Button>
                 )}
 
-                {isExperienceExpanded && experienceData.slice(2).map((exp, index) => (
-                  <ExperienceEntry key={index + 2} experience={exp} />
+                {isExperienceExpanded && experienceData.slice(1).map((exp, index) => (
+                  <ExperienceEntry key={index + 1} experience={exp} />
                 ))}
               </div>
             )}
