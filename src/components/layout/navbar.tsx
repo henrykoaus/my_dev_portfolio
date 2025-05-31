@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu, X, Briefcase, Code, User, MessageSquare, Brain, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
@@ -11,7 +11,7 @@ import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { name: 'Home', href: '/', icon: <User className="h-5 w-5" /> },
+  { name: 'Home', href: '/', icon: <User className="h-5 w-5" /> }, // Targets hero section implicitly
   { name: 'About', href: '/#about', icon: <User className="h-5 w-5" /> },
   { name: 'Projects', href: '/#projects', icon: <Briefcase className="h-5 w-5" /> },
   { name: 'Skills', href: '/#skills', icon: <Code className="h-5 w-5" /> },
@@ -31,53 +31,84 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
   useEffect(() => {
     const handleHashChange = () => {
-      setActiveHash(window.location.hash);
+      if (pathname === '/') {
+        setActiveHash(window.location.hash || '#hero');
+      } else {
+        setActiveHash(window.location.hash);
+      }
     };
 
-    handleHashChange(); 
+    handleHashChange(); // Set initial activeHash
     window.addEventListener('hashchange', handleHashChange);
-    
-    const sections = navItems
-      .filter(item => item.href.startsWith('/#'))
-      .map(item => document.getElementById(item.href.substring(2))); // e.g. "about" from "/#about"
-      
+
+    let elementsToObserve: HTMLElement[] = [];
+    if (pathname === '/') {
+      const sectionIds = ['hero']; // Always observe hero on homepage
+      navItems.forEach(item => {
+        if (item.href.startsWith('/#')) {
+          const id = item.href.substring(2);
+          if (id && !sectionIds.includes(id)) {
+            sectionIds.push(id);
+          }
+        }
+      });
+      elementsToObserve = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(el => el !== null) as HTMLElement[];
+    }
+
+    if (elementsToObserve.length === 0) {
+      return () => {
+        window.removeEventListener('hashchange', handleHashChange);
+      };
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        let intersectedEntryFound = false;
+        for (const entry of entries) {
           if (entry.isIntersecting) {
-            // Prepend '#' to match window.location.hash format
             setActiveHash(`#${entry.target.id}`);
+            intersectedEntryFound = true;
+            break; 
           }
-        });
+        }
+        // If after checking all entries, none are intersecting (e.g., scrolled to a gap)
+        // and on homepage, if near top, default to hero.
+        if (!intersectedEntryFound && pathname === '/' && window.scrollY < window.innerHeight * 0.1) {
+           setActiveHash('#hero');
+        }
       },
-      { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" } 
+      // Navbar height is h-16 (4rem = 64px).
+      // rootMargin: "-top_offset 0px -bottom_viewport_percentage 0px"
+      { threshold: 0.5, rootMargin: "-64px 0px -30% 0px" } 
     );
 
-    sections.forEach(section => {
-      if (section) observer.observe(section);
-    });
+    elementsToObserve.forEach(el => observer.observe(el));
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
-      sections.forEach(section => {
-        if (section) observer.unobserve(section);
+      elementsToObserve.forEach(el => {
+        if (el) observer.unobserve(el);
       });
     };
-  }, [pathname]); // Only re-run if pathname changes, navItems is stable
+  }, [pathname]);
 
 
   const isLinkActive = (href: string) => {
-    if (href === '/') {
-      // Home is active if on the root path and no specific hash section is active
-      return pathname === '/' && (activeHash === '' || activeHash === '#');
+    if (pathname === '/') { // Homepage with sections
+      if (href === '/') { // "Home" link
+        // Active if #hero is the hash, or if no hash/empty hash (initial load default)
+        return activeHash === '#hero' || activeHash === '' || activeHash === '#';
+      }
+      if (href.startsWith('/#')) { // Section links like /#about
+        // Active if the current activeHash matches the link's section id (e.g., #about === #about)
+        return activeHash === href.substring(1); 
+      }
     }
-    if (href.startsWith('/#')) {
-      // Anchor links like /#about are active if pathname is / and hash matches
-      // activeHash is '#about', href.substring(1) is '#about'
-      return pathname === '/' && activeHash === href.substring(1); 
-    }
-    // For other page links like /ai-tools
-    return pathname === href;
+    // For distinct pages like /ai-tools
+    // Active if the pathname matches and no hash fragment is active
+    return pathname === href && !activeHash;
   };
   
   const NavLink = ({ href, children, onClick }: { href: string, children: React.ReactNode, onClick?: () => void }) => (
@@ -122,7 +153,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         id={id}
         checked={theme === 'dark'}
         onCheckedChange={toggleTheme}
-        aria-label={theme === 'dark' ? "Switch to light mode (Australian flag context)" : "Switch to dark mode (Korean flag context)"}
+        aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
       />
       <Moon className="h-5 w-5 text-slate-500" aria-hidden="true" />
     </div>
@@ -136,7 +167,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         checked={theme === 'dark'}
         onCheckedChange={toggleTheme}
         className="h-5 w-9 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input [&>span]:h-4 [&>span]:w-4 [&>span[data-state=checked]]:translate-x-4 [&>span[data-state=unchecked]]:translate-x-0"
-        aria-label={theme === 'dark' ? "Switch to light mode (Australian flag context)" : "Switch to dark mode (Korean flag context)"}
+        aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
       />
       <Moon className="h-4 w-4 text-slate-500" aria-hidden="true" />
     </div>

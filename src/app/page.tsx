@@ -1,3 +1,4 @@
+
 export default function HomePage() {
   return (
     <>
@@ -10,34 +11,34 @@ export default function HomePage() {
       </section>
 
       {/* Placeholder for About Me Section */}
-      <section id="about" className="min-h-[50vh] py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-primary text-center mb-12">About Me</h2>
-          <p className="text-lg text-center text-foreground max-w-2xl mx-auto">This section will introduce the developer.</p>
+      <section id="about" className="min-h-screen flex items-center justify-center bg-background">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-primary mb-12">About Me</h2>
+          <p className="text-lg text-foreground max-w-2xl mx-auto">This section will introduce the developer.</p>
         </div>
       </section>
 
       {/* Placeholder for Projects Section */}
-      <section id="projects" className="min-h-[50vh] py-16 lg:py-24 bg-secondary">
-         <div className="container mx-auto px-4">
+      <section id="projects" className="min-h-screen flex items-center justify-center bg-secondary">
+         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-primary text-center mb-12">Projects</h2>
-          <p className="text-lg text-center text-foreground max-w-2xl mx-auto">Showcasing various projects developed.</p>
+          <p className="text-lg text-foreground max-w-2xl mx-auto">Showcasing various projects developed.</p>
         </div>
       </section>
 
       {/* Placeholder for Skills Section */}
-      <section id="skills" className="min-h-[50vh] py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4">
+      <section id="skills" className="min-h-screen flex items-center justify-center bg-background">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-primary text-center mb-12">Skills & Tech Stack</h2>
-          <p className="text-lg text-center text-foreground max-w-2xl mx-auto">Detailing technical skills and proficiency.</p>
+          <p className="text-lg text-foreground max-w-2xl mx-auto">Detailing technical skills and proficiency.</p>
         </div>
       </section>
 
       {/* Placeholder for Contact Section */}
-      <section id="contact" className="min-h-[50vh] py-16 lg:py-24 bg-secondary">
-        <div className="container mx-auto px-4">
+      <section id="contact" className="min-h-screen flex items-center justify-center bg-secondary">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-primary text-center mb-12">Contact Me</h2>
-          <p className="text-lg text-center text-foreground max-w-2xl mx-auto">Contact form and social media links will be here.</p>
+          <p className="text-lg text-foreground max-w-2xl mx-auto">Contact form and social media links will be here.</p>
         </div>
       </section>
     </>
