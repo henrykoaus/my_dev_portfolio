@@ -6,10 +6,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, GraduationCap, Linkedin, Github, Instagram, AtSign, CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, Container, PenTool, ExternalLink, Brain, DatabaseZap, AppWindow, Terminal, ChevronDown, ChevronUp } from 'lucide-react';
+import { 
+  Briefcase, GraduationCap, Linkedin, Github, Instagram, AtSign, 
+  CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, 
+  PenTool, ExternalLink, Brain, AppWindow, Terminal, 
+  ChevronDown, ChevronUp, Gem, Smartphone, Cloud, CloudCog, Server, 
+  LayoutPanelTop, Store, LayoutGrid, ShoppingCart, Image as ImageIcon,
+  NotebookText, ClipboardList, SearchCheck, TrendingUp, TerminalSquare, 
+  Waypoints, Blocks, Zap, Gauge, Rocket, MonitorSmartphone, Laptop, UploadCloud, HardDrive,
+  Accessibility as AccessibilityIcon 
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Sample Data (replace with your actual data)
 const projectData = [
   {
     title: 'AI Powered E-commerce Platform',
@@ -37,34 +45,97 @@ const projectData = [
   },
 ];
 
-const skillsData = {
-  frontend: [
-    { name: 'HTML5', icon: <CodeXml className="w-10 h-10" /> },
-    { name: 'CSS3', icon: <Palette className="w-10 h-10" /> },
-    { name: 'JavaScript (ES6+)', icon: <FileCode2 className="w-10 h-10" /> },
-    { name: 'TypeScript', icon: <FileCode2 className="w-10 h-10" /> },
-    { name: 'React', icon: <CodeXml className="w-10 h-10" /> },
-    { name: 'Next.js', icon: <AppWindow className="w-10 h-10" /> },
-    { name: 'Tailwind CSS', icon: <Palette className="w-10 h-10" /> },
-  ],
-  backend: [
-    { name: 'Node.js', icon: <ServerCog className="w-10 h-10" /> },
-    { name: 'Express.js', icon: <ServerCog className="w-10 h-10" /> },
-    { name: 'Python', icon: <Terminal className="w-10 h-10" /> },
-    { name: 'Genkit', icon: <Brain className="w-10 h-10" /> },
-  ],
-  databases: [
-    { name: 'MongoDB', icon: <Database className="w-10 h-10" /> },
-    { name: 'PostgreSQL', icon: <Database className="w-10 h-10" /> },
-    { name: 'Firebase', icon: <DatabaseZap className="w-10 h-10" /> },
-  ],
-  tools: [
-    { name: 'Git & GitHub', icon: <GitFork className="w-10 h-10" /> },
-    { name: 'Docker', icon: <Container className="w-10 h-10" /> },
-    { name: 'VS Code', icon: <CodeXml className="w-10 h-10" /> },
-    { name: 'Figma', icon: <PenTool className="w-10 h-10" /> },
-  ],
-};
+interface SkillItem {
+  name: string;
+  icon: React.ReactNode;
+}
+
+interface SkillCategoryData {
+  title: string;
+  skills: SkillItem[];
+}
+
+const skillsDataCategorized: SkillCategoryData[] = [
+  {
+    title: "Languages & Frameworks",
+    skills: [
+      { name: "HTML", icon: <CodeXml className="w-10 h-10" /> },
+      { name: "CSS", icon: <Palette className="w-10 h-10" /> },
+      { name: "JavaScript", icon: <FileCode2 className="w-10 h-10" /> },
+      { name: "TypeScript", icon: <FileCode2 className="w-10 h-10" /> },
+      { name: "PHP", icon: <FileCode2 className="w-10 h-10" /> },
+      { name: "SQL", icon: <Database className="w-10 h-10" /> },
+      { name: "Dart", icon: <Smartphone className="w-10 h-10" /> },
+      { name: "Ruby on Rails", icon: <Gem className="w-10 h-10" /> },
+      { name: "jQuery", icon: <FileCode2 className="w-10 h-10" /> },
+      { name: "React", icon: <AppWindow className="w-10 h-10" /> },
+      { name: "Vue.js", icon: <AppWindow className="w-10 h-10" /> },
+      { name: "Node.js", icon: <ServerCog className="w-10 h-10" /> },
+      { name: "Express.js", icon: <ServerCog className="w-10 h-10" /> },
+      { name: "Flutter", icon: <Smartphone className="w-10 h-10" /> },
+    ]
+  },
+  {
+    title: "Tools & DevOps",
+    skills: [
+      { name: "Visual Studio Code", icon: <MonitorSmartphone className="w-10 h-10" /> },
+      { name: "Android Studio", icon: <Smartphone className="w-10 h-10" /> },
+      { name: "Xcode", icon: <Laptop className="w-10 h-10" /> },
+      { name: "Git", icon: <GitFork className="w-10 h-10" /> },
+      { name: "GitHub", icon: <Github className="w-10 h-10" /> },
+      { name: "Termius", icon: <Terminal className="w-10 h-10" /> },
+      { name: "FileZilla", icon: <UploadCloud className="w-10 h-10" /> },
+      { name: "Sequel Pro", icon: <Database className="w-10 h-10" /> },
+      { name: "Google Cloud (Firebase)", icon: <Cloud className="w-10 h-10" /> },
+      { name: "AWS (EC2)", icon: <CloudCog className="w-10 h-10" /> },
+      { name: "Apache", icon: <Server className="w-10 h-10" /> },
+      { name: "MariaDB (MySQL)", icon: <Database className="w-10 h-10" /> },
+      { name: "PostgreSQL", icon: <Database className="w-10 h-10" /> },
+      { name: "SQLite", icon: <Database className="w-10 h-10" /> },
+    ]
+  },
+  {
+    title: "CMS & Deployment Platforms",
+    skills: [
+      { name: "WordPress", icon: <LayoutPanelTop className="w-10 h-10" /> },
+      { name: "Heroku", icon: <UploadCloud className="w-10 h-10" /> },
+      { name: "App Store", icon: <Store className="w-10 h-10" /> },
+      { name: "Google Play", icon: <Store className="w-10 h-10" /> },
+      { name: "GnuBoard", icon: <LayoutGrid className="w-10 h-10" /> },
+      { name: "WooCommerce", icon: <ShoppingCart className="w-10 h-10" /> },
+    ]
+  },
+  {
+    title: "UI/UX & Productivity Tools",
+    skills: [
+      { name: "Figma", icon: <PenTool className="w-10 h-10" /> },
+      { name: "Canva", icon: <ImageIcon className="w-10 h-10" /> },
+      { name: "Notion", icon: <NotebookText className="w-10 h-10" /> },
+      { name: "Jira", icon: <ClipboardList className="w-10 h-10" /> },
+      { name: "SEO Optimisation", icon: <SearchCheck className="w-10 h-10" /> },
+      { name: "Terminal", icon: <Terminal className="w-10 h-10" /> },
+      { name: "Command Line Tools", icon: <TerminalSquare className="w-10 h-10" /> },
+    ]
+  },
+  {
+    title: "Architecture & Design Patterns",
+    skills: [
+      { name: "Model-View-Controller (MVC)", icon: <Waypoints className="w-10 h-10" /> },
+      { name: "Object-Oriented Programming (OOP)", icon: <Blocks className="w-10 h-10" /> },
+    ]
+  },
+  {
+    title: "Other Skills",
+    skills: [
+      { name: "WordPress Automation", icon: <Zap className="w-10 h-10" /> },
+      { name: "Hybrid Mobile App Development", icon: <Smartphone className="w-10 h-10" /> },
+      { name: "Web Performance Optimisation", icon: <Gauge className="w-10 h-10" /> },
+      { name: "Accessibility", icon: <AccessibilityIcon className="w-10 h-10" /> },
+      { name: "SEO", icon: <SearchCheck className="w-10 h-10" /> },
+      { name: "SaaS Publishing", icon: <Rocket className="w-10 h-10" /> },
+    ]
+  }
+];
 
 const socialLinks = [
   { name: 'LinkedIn', icon: <Linkedin className="w-6 h-6" />, url: '#' },
@@ -176,22 +247,27 @@ const educationData: EducationItem[] = [
   }
 ];
 
-
 export default function HomePage() {
   const [activeAboutTab, setActiveAboutTab] = useState<'experience' | 'education'>('experience');
   const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
+  const [areAllSkillsShown, setAreAllSkillsShown] = useState(false);
+  const initialVisibleSkillCategories = 3;
 
-  const SkillCategory = ({ title, skills }: { title: string, skills: { name: string, icon: React.ReactNode }[] }) => (
-    <div className="mb-8">
+  const SkillCard = ({ name, icon }: SkillItem) => (
+    <div className="flex flex-col items-center p-4 bg-card rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+      <div className="p-3 mb-3 rounded-full bg-accent/10 text-accent">
+        {icon}
+      </div>
+      <span className="text-sm font-medium text-center text-foreground">{name}</span>
+    </div>
+  );
+  
+  const SkillCategoryDisplay = ({ title, skills }: SkillCategoryData) => (
+    <div className="mb-12">
       <h3 className="text-2xl font-semibold text-primary mb-6 text-center">{title}</h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {skills.map((skill) => (
-          <div key={skill.name} className="flex flex-col items-center p-4 bg-card rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-            <div className="p-3 mb-3 rounded-full bg-accent/10 text-accent">
-              {skill.icon}
-            </div>
-            <span className="text-sm font-medium text-center text-foreground">{skill.name}</span>
-          </div>
+          <SkillCard key={skill.name} name={skill.name} icon={skill.icon} />
         ))}
       </div>
     </div>
@@ -221,7 +297,7 @@ export default function HomePage() {
 
       {/* About Me Section */}
       <section id="about" className="min-h-screen flex items-center justify-center bg-background">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <p className="text-lg text-foreground leading-relaxed mb-8 text-left">
@@ -288,7 +364,7 @@ export default function HomePage() {
 
       {/* Projects Section */}
       <section id="projects" className="min-h-screen flex items-center justify-center bg-secondary">
-         <div className="container mx-auto px-4 text-center">
+         <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-4xl font-bold text-primary text-center mb-16">My Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projectData.map((project, index) => (
@@ -317,7 +393,7 @@ export default function HomePage() {
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter className="p-6 bg-muted/50">
+                <CardFooter className="p-6 bg-card/50 dark:bg-card/20">
                   <Button asChild variant="default" className="w-full gap-2">
                     <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
                       View Project <ExternalLink className="w-4 h-4" />
@@ -332,15 +408,30 @@ export default function HomePage() {
 
       {/* Skills Section */}
       <section id="skills" className="min-h-screen flex items-center justify-center bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-primary text-center mb-16">Skills & Tech Stack</h2>
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h2 className="text-4xl font-bold text-primary text-center mb-16">Skills &amp; Tech Stack</h2>
           <div className="max-w-5xl mx-auto">
-            <SkillCategory title="Frontend Development" skills={skillsData.frontend} />
-            <SkillCategory title="Backend Development" skills={skillsData.backend} />
-            <SkillCategory title="Databases" skills={skillsData.databases} />
-            <SkillCategory title="Tools & Platforms" skills={skillsData.tools} />
+            {skillsDataCategorized.slice(0, initialVisibleSkillCategories).map((category) => (
+              <SkillCategoryDisplay key={category.title} title={category.title} skills={category.skills} />
+            ))}
+
+            {skillsDataCategorized.length > initialVisibleSkillCategories && (
+              <Button
+                onClick={() => setAreAllSkillsShown(!areAllSkillsShown)}
+                variant="outline"
+                className="w-full mt-8 mb-8"
+              >
+                {areAllSkillsShown ? 'Show Fewer Skills' : 'Show All Skills'}
+                {areAllSkillsShown ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
+              </Button>
+            )}
+
+            {areAllSkillsShown && skillsDataCategorized.slice(initialVisibleSkillCategories).map((category) => (
+              <SkillCategoryDisplay key={category.title} title={category.title} skills={category.skills} />
+            ))}
+            
             <p className="mt-12 text-sm text-muted-foreground">
-              Note: Icons are representative. For a richer display, consider replacing them with official SVG logos.
+              Note: Icons are representative. For a richer display, consider replacing them with official SVG logos where available.
             </p>
           </div>
         </div>
@@ -348,14 +439,13 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center justify-center bg-secondary">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-4xl font-bold text-primary text-center mb-16">Get In Touch</h2>
           <p className="text-lg text-foreground max-w-xl mx-auto mb-12">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of something amazing.
             Feel free to reach out!
           </p>
           <div className="bg-card p-8 rounded-xl shadow-xl max-w-md mx-auto">
-            {/* Placeholder for a contact form - can be built out later */}
             <div className="mb-8">
               <p className="text-foreground">
                 The best way to reach me is via email at: <a href="mailto:your.email@example.com" className="text-accent hover:underline font-medium">your.email@example.com</a>
@@ -383,4 +473,3 @@ export default function HomePage() {
     </>
   );
 }
-
