@@ -73,6 +73,110 @@ const socialLinks = [
   { name: 'Instagram', icon: <Instagram className="w-6 h-6" />, url: '#' },
 ];
 
+interface ExperienceItem {
+  title: string;
+  company: string;
+  dates: string;
+  details: string[];
+}
+
+const experienceData: ExperienceItem[] = [
+  {
+    title: "Software Developer",
+    company: "KoTai Australia (Remote)",
+    dates: "Apr 2025 – Present",
+    details: [
+      "Developed and maintained responsive web apps and CMS platforms using WordPress, PHP, and JavaScript.",
+      "Automated WordPress blog publishing workflows to save time and reduce manual effort.",
+      "Integrated third-party APIs (e.g., payment gateways, social sharing tools) for added site functionality.",
+      "Optimised site performance, SEO, and mobile responsiveness.",
+      "Built community platforms and e-commerce sites targeting Korean markets using GnuBoard."
+    ]
+  },
+  {
+    title: "Software Developer",
+    company: "R2reKorea (Remote)",
+    dates: "May 2023 – July 2024",
+    details: [
+      "Led full project lifecycle from planning to deployment, creating web and mobile app solutions.",
+      "Applied strong debugging and testing strategies to deliver clean, maintainable code.",
+      "Embraced continuous learning to stay updated on frameworks and best practices."
+    ]
+  },
+  {
+    title: "Disability Justice Coordinator",
+    company: "Department of Families, Fairness and Housing (VIC, Australia)",
+    dates: "Aug 2024 – Jan 2025",
+    details: [
+      "Advocated for clients within the legal system; liaised with stakeholders under pressure.",
+      "Developed strategic plans based on complex assessments — skills mirrored in problem-solving during dev projects."
+    ]
+  },
+  {
+    title: "Local Area Coordinator",
+    company: "Latrobe Community Health Services (VIC, Australia)",
+    dates: "May 2021 – Apr 2023",
+    details: [
+      "Conducted needs-based assessments and coordinated cross-functional support.",
+      "Refined stakeholder communication and planning — vital for translating client requirements into software features."
+    ]
+  },
+  {
+    title: "Mental Health Practitioner",
+    company: "Mind Australia (VIC, Australia)",
+    dates: "Nov 2020 – Nov 2021",
+    details: [
+      "Facilitated structured programs and collaborated with multidisciplinary teams.",
+      "Cultivated empathy and team-based problem solving that now strengthens dev collaboration."
+    ]
+  },
+  {
+    title: "Aircraft Maintenance Engineer",
+    company: "Republic of Korea Air Force (Chungju-si, South Korea)",
+    dates: "Mar 2010 – Feb 2017",
+    details: [
+      "Performed technical diagnostics and repairs in high-stakes environments.",
+      "Developed strong attention to detail, precision, and teamwork under strict protocols.",
+      "Equipped with strong “can-do” and “never-give-up” mindset."
+    ]
+  }
+];
+
+interface EducationItem {
+  dates: string;
+  degree: string;
+  institution: string;
+  location: string;
+}
+
+const educationData: EducationItem[] = [
+  {
+    dates: "Jan 2025 – Apr 2025",
+    degree: "Full Stack Web Development with AI features Bootcamp",
+    institution: "Le Wagon",
+    location: "Australia"
+  },
+  {
+    dates: "Jun 2018 – Aug 2020",
+    degree: "Master’s degree, Social Work",
+    institution: "Flinders University",
+    location: "South Australia"
+  },
+  {
+    dates: "Mar 2014 - Aug 2016",
+    degree: "Master’s degree, Public Administration",
+    institution: "Yonsei University",
+    location: "South Korea"
+  },
+  {
+    dates: "Aug 2011 - Aug 2013",
+    degree: "Bachelor’s degree, Computer Science",
+    institution: "National Institute for Lifelong Education",
+    location: "South Korea"
+  }
+];
+
+
 export default function HomePage() {
   const [activeAboutTab, setActiveAboutTab] = useState<'experience' | 'education'>('experience');
 
@@ -107,10 +211,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 text-center py-16 lg:py-24">
           <h2 className="text-4xl font-bold text-primary mb-12">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
-            <p className="text-lg text-foreground leading-relaxed mb-8">
-              Hello! I'm a passionate and dedicated developer with a knack for creating elegant and efficient solutions.
-              My journey in tech has been driven by a constant curiosity and a desire to build impactful applications.
-              I thrive in collaborative environments and enjoy tackling complex challenges.
+            <p className="text-lg text-foreground leading-relaxed mb-8 text-left">
+              Problem-solver at heart with a strong focus on building clean, user-friendly, and efficient web applications. 
+              Not just a Developer but state of the art AI-savvy Developer with an excellent ability to use and keep up to date with new AI tools for maximising efficiency, automation and performance with a strong foundation in full-stack development, automation, and API integration. 
+              Background in health care, customer service with high-pressure, collaborative environments brings strong analytical thinking, interpersonal communication, and adaptability to every project.
             </p>
             <div className="flex justify-center space-x-4 mb-8">
               <Button
@@ -130,44 +234,32 @@ export default function HomePage() {
             </div>
 
             {activeAboutTab === 'experience' && (
-              <div className="text-left space-y-4 p-6 bg-secondary/50 rounded-lg">
-                <h3 className="text-xl font-semibold text-primary mb-3">Professional Experience</h3>
-                <div className="mb-4">
-                  <h4 className="text-lg font-medium text-foreground">Senior Developer at Tech Solutions Inc.</h4>
-                  <p className="text-sm text-muted-foreground">Jan 2021 - Present</p>
-                  <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1">
-                    <li>Led development of key features for a major SaaS product.</li>
-                    <li>Mentored junior developers and improved code quality standards.</li>
-                    <li>Collaborated with cross-functional teams to deliver projects on time.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium text-foreground">Software Engineer at Web Innovators LLC</h4>
-                  <p className="text-sm text-muted-foreground">Jun 2018 - Dec 2020</p>
-                   <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1">
-                    <li>Developed and maintained full-stack web applications.</li>
-                    <li>Contributed to API design and database architecture.</li>
-                  </ul>
-                </div>
+              <div className="text-left space-y-6 p-6 bg-secondary/50 rounded-lg">
+                <h3 className="text-xl font-semibold text-primary mb-4">Professional Experience</h3>
+                {experienceData.map((exp, index) => (
+                  <div key={index} className="mb-6">
+                    <h4 className="text-lg font-medium text-foreground">{exp.title} - {exp.company}</h4>
+                    <p className="text-sm text-muted-foreground">{exp.dates}</p>
+                    <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1 pl-4">
+                      {exp.details.map((detail, i) => (
+                        <li key={i}>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             )}
 
             {activeAboutTab === 'education' && (
-              <div className="text-left space-y-4 p-6 bg-secondary/50 rounded-lg">
-                <h3 className="text-xl font-semibold text-primary mb-3">Education & Certifications</h3>
-                 <div className="mb-4">
-                  <h4 className="text-lg font-medium text-foreground">M.Sc. in Computer Science - University of Tech</h4>
-                  <p className="text-sm text-muted-foreground">Graduated: May 2018</p>
-                  <p className="text-foreground/80 mt-1">Specialized in Software Engineering and AI.</p>
-                </div>
-                <div className="mb-4">
-                  <h4 className="text-lg font-medium text-foreground">B.Sc. in Information Technology - State College</h4>
-                  <p className="text-sm text-muted-foreground">Graduated: May 2016</p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium text-foreground">Certified Next.js Developer</h4>
-                  <p className="text-sm text-muted-foreground">Issued: Mar 2022</p>
-                </div>
+              <div className="text-left space-y-6 p-6 bg-secondary/50 rounded-lg">
+                <h3 className="text-xl font-semibold text-primary mb-4">Education & Certifications</h3>
+                {educationData.map((edu, index) => (
+                  <div key={index} className="mb-4">
+                    <h4 className="text-lg font-medium text-foreground">{edu.degree}</h4>
+                    <p className="text-sm text-muted-foreground">{edu.dates}</p>
+                    <p className="text-foreground/80 mt-1">{edu.institution}, {edu.location}</p>
+                  </div>
+                ))}
               </div>
             )}
           </div>
@@ -271,5 +363,7 @@ export default function HomePage() {
     </>
   );
 }
+
+    
 
     
