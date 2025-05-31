@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, GraduationCap, Linkedin, Github, Instagram, AtSign, CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, Container, PenTool, ExternalLink, Brain, DatabaseZap, AppWindow, Terminal } from 'lucide-react';
+import { Briefcase, GraduationCap, Linkedin, Github, Instagram, AtSign, CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, Container, PenTool, ExternalLink, Brain, DatabaseZap, AppWindow, Terminal, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Sample Data (replace with your actual data)
@@ -179,6 +179,7 @@ const educationData: EducationItem[] = [
 
 export default function HomePage() {
   const [activeAboutTab, setActiveAboutTab] = useState<'experience' | 'education'>('experience');
+  const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
 
   const SkillCategory = ({ title, skills }: { title: string, skills: { name: string, icon: React.ReactNode }[] }) => (
     <div className="mb-8">
@@ -196,6 +197,18 @@ export default function HomePage() {
     </div>
   );
 
+  const ExperienceEntry = ({ experience }: { experience: ExperienceItem }) => (
+    <div className="mb-6">
+      <h4 className="text-lg font-medium text-foreground">{experience.title} - {experience.company}</h4>
+      <p className="text-sm text-muted-foreground">{experience.dates}</p>
+      <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1 pl-4">
+        {experience.details.map((detail, i) => (
+          <li key={i}>{detail}</li>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
     <>
       {/* Hero Section */}
@@ -208,7 +221,7 @@ export default function HomePage() {
 
       {/* About Me Section */}
       <section id="about" className="min-h-screen flex items-center justify-center bg-background">
-        <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-primary mb-12">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <p className="text-lg text-foreground leading-relaxed mb-8 text-left">
@@ -236,16 +249,23 @@ export default function HomePage() {
             {activeAboutTab === 'experience' && (
               <div className="text-left space-y-6 p-6 bg-secondary/50 rounded-lg">
                 <h3 className="text-xl font-semibold text-primary mb-4">Professional Experience</h3>
-                {experienceData.map((exp, index) => (
-                  <div key={index} className="mb-6">
-                    <h4 className="text-lg font-medium text-foreground">{exp.title} - {exp.company}</h4>
-                    <p className="text-sm text-muted-foreground">{exp.dates}</p>
-                    <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1 pl-4">
-                      {exp.details.map((detail, i) => (
-                        <li key={i}>{detail}</li>
-                      ))}
-                    </ul>
-                  </div>
+                {experienceData.slice(0, 2).map((exp, index) => (
+                  <ExperienceEntry key={index} experience={exp} />
+                ))}
+                
+                {experienceData.length > 2 && (
+                  <Button 
+                    onClick={() => setIsExperienceExpanded(!isExperienceExpanded)} 
+                    variant="outline" 
+                    className="w-full mt-4"
+                  >
+                    {isExperienceExpanded ? 'Show Less Experience' : 'Show More Experience'}
+                    {isExperienceExpanded ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
+                  </Button>
+                )}
+
+                {isExperienceExpanded && experienceData.slice(2).map((exp, index) => (
+                  <ExperienceEntry key={index + 2} experience={exp} />
                 ))}
               </div>
             )}
@@ -268,7 +288,7 @@ export default function HomePage() {
 
       {/* Projects Section */}
       <section id="projects" className="min-h-screen flex items-center justify-center bg-secondary">
-         <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-primary text-center mb-16">My Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projectData.map((project, index) => (
@@ -312,7 +332,7 @@ export default function HomePage() {
 
       {/* Skills Section */}
       <section id="skills" className="min-h-screen flex items-center justify-center bg-background">
-        <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-primary text-center mb-16">Skills & Tech Stack</h2>
           <div className="max-w-5xl mx-auto">
             <SkillCategory title="Frontend Development" skills={skillsData.frontend} />
@@ -328,7 +348,7 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center justify-center bg-secondary">
-        <div className="container mx-auto px-4 text-center py-16 lg:py-24">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-primary text-center mb-8">Get In Touch</h2>
           <p className="text-lg text-foreground max-w-xl mx-auto mb-12">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of something amazing.
@@ -363,7 +383,3 @@ export default function HomePage() {
     </>
   );
 }
-
-    
-
-    
