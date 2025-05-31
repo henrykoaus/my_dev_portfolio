@@ -1,9 +1,9 @@
+
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/layout/navbar';
-import Footer from '@/components/layout/footer';
-import { Toaster } from "@/components/ui/toaster"
+import ThemeProviderClient from '@/components/layout/theme-provider-client';
+import React from 'react';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,12 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
-        <Navbar />
-        <main className="flex-grow pt-16"> {/* pt-16 to offset fixed navbar height */}
+        <ThemeProviderClient>
           {children}
-        </main>
-        <Footer />
-        <Toaster />
+        </ThemeProviderClient>
       </body>
     </html>
   );

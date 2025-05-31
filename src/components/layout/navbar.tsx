@@ -1,11 +1,13 @@
+
 "use client";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Menu, X, Briefcase, Code, User, MessageSquare, Brain } from 'lucide-react';
+import { Menu, X, Briefcase, Code, User, MessageSquare, Brain, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -17,7 +19,12 @@ const navItems = [
   { name: 'AI Tools', href: '/ai-tools', icon: <Brain className="h-5 w-5" /> },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+}
+
+export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState('');
@@ -27,23 +34,23 @@ export default function Navbar() {
       setActiveHash(window.location.hash);
     };
 
-    handleHashChange(); // Set initial hash
+    handleHashChange(); 
     window.addEventListener('hashchange', handleHashChange);
     
-    // Intersection observer for section highlighting
     const sections = navItems
       .filter(item => item.href.startsWith('/#'))
-      .map(item => document.getElementById(item.href.substring(2)));
+      .map(item => document.getElementById(item.href.substring(2))); // e.g. "about" from "/#about"
       
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            // Prepend '#' to match window.location.hash format
             setActiveHash(`#${entry.target.id}`);
           }
         });
       },
-      { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" } // Adjust rootMargin as needed
+      { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" } 
     );
 
     sections.forEach(section => {
@@ -56,15 +63,20 @@ export default function Navbar() {
         if (section) observer.unobserve(section);
       });
     };
-  }, [pathname]);
+  }, [pathname]); // Only re-run if pathname changes, navItems is stable
 
 
   const isLinkActive = (href: string) => {
-    if (href.startsWith('/#')) {
-      // For anchor links on the homepage
-      return pathname === '/' && activeHash === href.substring(1);
+    if (href === '/') {
+      // Home is active if on the root path and no specific hash section is active
+      return pathname === '/' && (activeHash === '' || activeHash === '#');
     }
-    // For page links
+    if (href.startsWith('/#')) {
+      // Anchor links like /#about are active if pathname is / and hash matches
+      // activeHash is '#about', href.substring(1) is '#about'
+      return pathname === '/' && activeHash === href.substring(1); 
+    }
+    // For other page links like /ai-tools
     return pathname === href;
   };
   
@@ -103,6 +115,33 @@ export default function Navbar() {
      </SheetClose>
   );
 
+  const ThemeToggleSwitch = ({ id }: { id: string }) => (
+    <div className="flex items-center space-x-2">
+      <Sun className="h-5 w-5 text-yellow-500" aria-hidden="true" />
+      <Switch
+        id={id}
+        checked={theme === 'dark'}
+        onCheckedChange={toggleTheme}
+        aria-label={theme === 'dark' ? "Switch to light mode (Australian flag context)" : "Switch to dark mode (Korean flag context)"}
+      />
+      <Moon className="h-5 w-5 text-slate-500" aria-hidden="true" />
+    </div>
+  );
+  
+  const MobileThemeToggleSwitch = ({ id }: { id: string }) => (
+    <div className="flex items-center space-x-1">
+      <Sun className="h-4 w-4 text-yellow-500" aria-hidden="true" />
+      <Switch
+        id={id}
+        checked={theme === 'dark'}
+        onCheckedChange={toggleTheme}
+        className="h-5 w-9 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input [&>span]:h-4 [&>span]:w-4 [&>span[data-state=checked]]:translate-x-4 [&>span[data-state=unchecked]]:translate-x-0"
+        aria-label={theme === 'dark' ? "Switch to light mode (Australian flag context)" : "Switch to dark mode (Korean flag context)"}
+      />
+      <Moon className="h-4 w-4 text-slate-500" aria-hidden="true" />
+    </div>
+  );
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md shadow-sm">
@@ -113,7 +152,7 @@ export default function Navbar() {
               Devfolio
             </Link>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center">
             <div className="ml-10 flex items-baseline space-x-2 lg:space-x-4">
               {navItems.map((item) => (
                 <NavLink key={item.name} href={item.href}>
@@ -121,8 +160,14 @@ export default function Navbar() {
                 </NavLink>
               ))}
             </div>
+            <div className="ml-6">
+              <ThemeToggleSwitch id="theme-toggle-desktop" />
+            </div>
           </div>
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <div className="mr-2">
+                <MobileThemeToggleSwitch id="theme-toggle-mobile-header" />
+            </div>
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" aria-label="Open menu">
@@ -151,6 +196,9 @@ export default function Navbar() {
                             onClick={() => setIsMobileMenuOpen(false)} 
                         />
                     ))}
+                    </div>
+                    <div className="p-4 border-t">
+                        <MobileThemeToggleSwitch id="theme-toggle-mobile-sheet" />
                     </div>
                 </div>
               </SheetContent>
