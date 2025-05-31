@@ -11,8 +11,8 @@ import {
   CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, 
   PenTool, ExternalLink, Brain, AppWindow, Terminal, 
   ChevronDown, ChevronUp, Gem, Smartphone, Cloud, CloudCog, Server, 
-  LayoutPanelTop, Store, LayoutGrid, ShoppingCart, Image as ImageIcon,
-  NotebookText, ClipboardList, SearchCheck, TrendingUp, TerminalSquare, 
+  LayoutPanelTop, Store, LayoutGrid, ShoppingCart, ImageIcon as ImageIconLucide, // Renamed to avoid conflict
+  NotebookText, ClipboardList, SearchCheck, TerminalSquare, 
   Waypoints, Blocks, Zap, Gauge, Rocket, MonitorSmartphone, Laptop, UploadCloud, HardDrive,
   Accessibility as AccessibilityIcon 
 } from 'lucide-react';
@@ -63,75 +63,78 @@ const skillsDataCategorized: SkillCategoryData[] = [
       { name: "CSS", icon: <Palette className="w-10 h-10" /> },
       { name: "JavaScript", icon: <FileCode2 className="w-10 h-10" /> },
       { name: "TypeScript", icon: <FileCode2 className="w-10 h-10" /> },
+      { name: "React", icon: <AppWindow className="w-10 h-10" /> },
+      { name: "Node.js", icon: <ServerCog className="w-10 h-10" /> },
+      { name: "Express.js", icon: <ServerCog className="w-10 h-10" /> },
       { name: "PHP", icon: <FileCode2 className="w-10 h-10" /> },
       { name: "SQL", icon: <Database className="w-10 h-10" /> },
       { name: "Dart", icon: <Smartphone className="w-10 h-10" /> },
-      { name: "Ruby on Rails", icon: <Gem className="w-10 h-10" /> },
-      { name: "jQuery", icon: <FileCode2 className="w-10 h-10" /> },
-      { name: "React", icon: <AppWindow className="w-10 h-10" /> },
-      { name: "Vue.js", icon: <AppWindow className="w-10 h-10" /> },
-      { name: "Node.js", icon: <ServerCog className="w-10 h-10" /> },
-      { name: "Express.js", icon: <ServerCog className="w-10 h-10" /> },
       { name: "Flutter", icon: <Smartphone className="w-10 h-10" /> },
+      { name: "Ruby on Rails", icon: <Gem className="w-10 h-10" /> },
+      { name: "Vue.js", icon: <AppWindow className="w-10 h-10" /> },
+      { name: "jQuery", icon: <FileCode2 className="w-10 h-10" /> },
     ]
   },
   {
-    title: "Tools & DevOps",
+    title: "Development Tools & Platforms",
     skills: [
-      { name: "Visual Studio Code", icon: <MonitorSmartphone className="w-10 h-10" /> },
-      { name: "Android Studio", icon: <Smartphone className="w-10 h-10" /> },
-      { name: "Xcode", icon: <Laptop className="w-10 h-10" /> },
+      { name: "VS Code", icon: <MonitorSmartphone className="w-10 h-10" /> },
       { name: "Git", icon: <GitFork className="w-10 h-10" /> },
       { name: "GitHub", icon: <Github className="w-10 h-10" /> },
-      { name: "Termius", icon: <Terminal className="w-10 h-10" /> },
-      { name: "FileZilla", icon: <UploadCloud className="w-10 h-10" /> },
-      { name: "Sequel Pro", icon: <Database className="w-10 h-10" /> },
+      { name: "Command Line Tools", icon: <TerminalSquare className="w-10 h-10" /> },
+      { name: "Android Studio", icon: <Smartphone className="w-10 h-10" /> },
+      { name: "Xcode", icon: <Laptop className="w-10 h-10" /> },
       { name: "Google Cloud (Firebase)", icon: <Cloud className="w-10 h-10" /> },
       { name: "AWS (EC2)", icon: <CloudCog className="w-10 h-10" /> },
+      { name: "Heroku", icon: <UploadCloud className="w-10 h-10" /> },
       { name: "Apache", icon: <Server className="w-10 h-10" /> },
+      { name: "Termius", icon: <Terminal className="w-10 h-10" /> },
+      { name: "FileZilla", icon: <UploadCloud className="w-10 h-10" /> },
+    ]
+  },
+  {
+    title: "Databases",
+    skills: [
       { name: "MariaDB (MySQL)", icon: <Database className="w-10 h-10" /> },
       { name: "PostgreSQL", icon: <Database className="w-10 h-10" /> },
-      { name: "SQLite", icon: <Database className="w-10 h-10" /> },
+      { name: "SQLite", icon: <HardDrive className="w-10 h-10" /> },
+      { name: "Sequel Pro", icon: <Database className="w-10 h-10" /> },
     ]
   },
   {
-    title: "CMS & Deployment Platforms",
+    title: "CMS & E-commerce",
     skills: [
       { name: "WordPress", icon: <LayoutPanelTop className="w-10 h-10" /> },
-      { name: "Heroku", icon: <UploadCloud className="w-10 h-10" /> },
-      { name: "App Store", icon: <Store className="w-10 h-10" /> },
-      { name: "Google Play", icon: <Store className="w-10 h-10" /> },
-      { name: "GnuBoard", icon: <LayoutGrid className="w-10 h-10" /> },
       { name: "WooCommerce", icon: <ShoppingCart className="w-10 h-10" /> },
+      { name: "GnuBoard", icon: <LayoutGrid className="w-10 h-10" /> },
+      { name: "App Store Deployment", icon: <Store className="w-10 h-10" /> },
+      { name: "Google Play Deployment", icon: <Store className="w-10 h-10" /> },
     ]
   },
   {
-    title: "UI/UX & Productivity Tools",
+    title: "UI/UX, Design & Productivity",
     skills: [
       { name: "Figma", icon: <PenTool className="w-10 h-10" /> },
-      { name: "Canva", icon: <ImageIcon className="w-10 h-10" /> },
+      { name: "Canva", icon: <ImageIconLucide className="w-10 h-10" /> },
       { name: "Notion", icon: <NotebookText className="w-10 h-10" /> },
       { name: "Jira", icon: <ClipboardList className="w-10 h-10" /> },
-      { name: "SEO Optimisation", icon: <SearchCheck className="w-10 h-10" /> },
-      { name: "Terminal", icon: <Terminal className="w-10 h-10" /> },
-      { name: "Command Line Tools", icon: <TerminalSquare className="w-10 h-10" /> },
     ]
   },
   {
-    title: "Architecture & Design Patterns",
+    title: "Methodologies & Best Practices",
     skills: [
-      { name: "Model-View-Controller (MVC)", icon: <Waypoints className="w-10 h-10" /> },
-      { name: "Object-Oriented Programming (OOP)", icon: <Blocks className="w-10 h-10" /> },
+      { name: "MVC", icon: <Waypoints className="w-10 h-10" /> },
+      { name: "OOP", icon: <Blocks className="w-10 h-10" /> },
+      { name: "Web Performance Opt.", icon: <Gauge className="w-10 h-10" /> },
+      { name: "Accessibility (A11y)", icon: <AccessibilityIcon className="w-10 h-10" /> },
+      { name: "SEO", icon: <SearchCheck className="w-10 h-10" /> },
     ]
   },
   {
-    title: "Other Skills",
+    title: "Specialized & Other Skills",
     skills: [
       { name: "WordPress Automation", icon: <Zap className="w-10 h-10" /> },
-      { name: "Hybrid Mobile App Development", icon: <Smartphone className="w-10 h-10" /> },
-      { name: "Web Performance Optimisation", icon: <Gauge className="w-10 h-10" /> },
-      { name: "Accessibility", icon: <AccessibilityIcon className="w-10 h-10" /> },
-      { name: "SEO", icon: <SearchCheck className="w-10 h-10" /> },
+      { name: "Hybrid Mobile Apps", icon: <Smartphone className="w-10 h-10" /> },
       { name: "SaaS Publishing", icon: <Rocket className="w-10 h-10" /> },
     ]
   }
@@ -140,7 +143,7 @@ const skillsDataCategorized: SkillCategoryData[] = [
 const socialLinks = [
   { name: 'LinkedIn', icon: <Linkedin className="w-6 h-6" />, url: '#' },
   { name: 'GitHub', icon: <Github className="w-6 h-6" />, url: '#' },
-  { name: 'Threads', icon: <AtSign className="w-6 h-6" />, url: '#' },
+  { name: 'Threads', icon: <AtSign className="w-6 h-6" />, url: '#' }, // Using AtSign as a placeholder for Threads
   { name: 'Instagram', icon: <Instagram className="w-6 h-6" />, url: '#' },
 ];
 
@@ -251,7 +254,7 @@ export default function HomePage() {
   const [activeAboutTab, setActiveAboutTab] = useState<'experience' | 'education'>('experience');
   const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
   const [areAllSkillsShown, setAreAllSkillsShown] = useState(false);
-  const initialVisibleSkillCategories = 3;
+  const initialVisibleSkillCategories = 1; // Show only "Languages & Frameworks" by default
 
   const SkillCard = ({ name, icon }: SkillItem) => (
     <div className="flex flex-col items-center p-4 bg-card rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
@@ -419,7 +422,7 @@ export default function HomePage() {
               <Button
                 onClick={() => setAreAllSkillsShown(!areAllSkillsShown)}
                 variant="outline"
-                className="w-full mt-8 mb-8"
+                className="w-full mt-0 mb-8" // Adjusted mt-0 as button appears after the first category
               >
                 {areAllSkillsShown ? 'Show Fewer Skills' : 'Show All Skills'}
                 {areAllSkillsShown ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
