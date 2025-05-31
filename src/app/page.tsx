@@ -222,7 +222,7 @@ export default function HomePage() {
       {/* About Me Section */}
       <section id="about" className="min-h-screen flex items-center justify-center bg-background">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-primary mb-12">About Me</h2>
+          <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <p className="text-lg text-foreground leading-relaxed mb-8 text-left">
               Problem-solver at heart with a strong focus on building clean, user-friendly, and efficient web applications. 
@@ -349,7 +349,7 @@ export default function HomePage() {
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center justify-center bg-secondary">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-primary text-center mb-8">Get In Touch</h2>
+          <h2 className="text-4xl font-bold text-primary text-center mb-16">Get In Touch</h2>
           <p className="text-lg text-foreground max-w-xl mx-auto mb-12">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of something amazing.
             Feel free to reach out!
@@ -383,3 +383,4 @@ export default function HomePage() {
     </>
   );
 }
+
