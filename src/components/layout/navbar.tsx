@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
 import { Menu, X, Briefcase, Code, User, MessageSquare, Brain, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from '@/components/ui/sheet';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 
@@ -34,16 +34,16 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       if (pathname === '/') {
         setActiveHash(window.location.hash || '#hero');
       } else {
-        setActiveHash(window.location.hash);
+        setActiveHash(''); // Clear hash if not on homepage to avoid highlighting section links
       }
     };
 
-    handleHashChange(); // Set initial activeHash
+    handleHashChange(); 
     window.addEventListener('hashchange', handleHashChange);
 
     let elementsToObserve: HTMLElement[] = [];
     if (pathname === '/') {
-      const sectionIds = ['hero']; // Always observe hero on homepage
+      const sectionIds = ['hero']; 
       navItems.forEach(item => {
         if (item.href.startsWith('/#')) {
           const id = item.href.substring(2);
@@ -57,11 +57,22 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         .filter(el => el !== null) as HTMLElement[];
     }
 
-    if (elementsToObserve.length === 0) {
-      return () => {
-        window.removeEventListener('hashchange', handleHashChange);
-      };
+
+    if (elementsToObserve.length === 0 && pathname !== '/') {
+       setActiveHash(''); // Ensure hash is cleared if no sections to observe (e.g. on /ai-tools)
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        };
     }
+    
+    if (elementsToObserve.length === 0 && pathname === '/') {
+        // If on homepage but no specific sections found (should not happen with hero always there)
+        // still listen for hash changes for direct navigation.
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        };
+    }
+
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -73,14 +84,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             break; 
           }
         }
-        // If after checking all entries, none are intersecting (e.g., scrolled to a gap)
-        // and on homepage, if near top, default to hero.
         if (!intersectedEntryFound && pathname === '/' && window.scrollY < window.innerHeight * 0.1) {
            setActiveHash('#hero');
         }
       },
-      // Navbar height is h-16 (4rem = 64px).
-      // rootMargin: "-top_offset 0px -bottom_viewport_percentage 0px"
       { threshold: 0.5, rootMargin: "-64px 0px -30% 0px" } 
     );
 
@@ -96,19 +103,16 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
 
   const isLinkActive = (href: string) => {
-    if (pathname === '/') { // Homepage with sections
-      if (href === '/') { // "Home" link
-        // Active if #hero is the hash, or if no hash/empty hash (initial load default)
+    if (pathname === '/') { 
+      if (href === '/') { 
         return activeHash === '#hero' || activeHash === '' || activeHash === '#';
       }
-      if (href.startsWith('/#')) { // Section links like /#about
-        // Active if the current activeHash matches the link's section id (e.g., #about === #about)
+      if (href.startsWith('/#')) { 
         return activeHash === href.substring(1); 
       }
     }
-    // For distinct pages like /ai-tools
-    // Active if the pathname matches and no hash fragment is active
-    return pathname === href && !activeHash;
+    // For distinct pages like /ai-tools, active if pathname matches and no hash fragment is active for a section
+    return pathname === href && (activeHash === '' || !navItems.some(item => item.href.endsWith(activeHash) && item.href.startsWith('/#')));
   };
   
   const NavLink = ({ href, children, onClick }: { href: string, children: React.ReactNode, onClick?: () => void }) => (
@@ -208,6 +212,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               <SheetContent side="right" className="w-[280px] p-0 bg-background">
                 <div className="flex flex-col h-full">
                     <div className="flex items-center justify-between p-4 border-b">
+                        <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
                         <Link href="/" className="text-xl font-bold text-primary" onClick={() => setIsMobileMenuOpen(false)}>
                             Devfolio
                         </Link>
