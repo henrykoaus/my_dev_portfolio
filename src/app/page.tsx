@@ -27,7 +27,9 @@ const projectData = [
   {
     title: 'R2re (ReturnToRestaurant)',
     description: 'R2:re (Return to Restaurant) is a platform that connects restaurant owners and customers, helping diners enjoy more meals at better value while boosting sales and customer loyalty for businesses. It supports small food businesses and revitalizes the dining market through smart rewards and engagement. Inspired by Australia’s Liven, R2:re drives innovation in Korea’s restaurant culture.',
-    projectUrl: '#', // Replace with actual project URL
+    projectUrl: '#', // Fallback if no store URLs
+    appStoreUrl: '#', // Replace with actual App Store URL
+    googlePlayUrl: '#', // Replace with actual Google Play URL
     techStack: ['Dart', 'Flutter', 'Google Cloud Platform', 'Firebase', 'Node.js', 'Express.js'],
   },
   {
@@ -369,7 +371,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projectData.map((project, index) => (
               <Card key={index} className="flex flex-col overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 rounded-xl">
-                <CardContent className="flex-grow p-6 space-y-3 pt-6"> {/* Added pt-6 here */}
+                <CardContent className="flex-grow p-6 space-y-3 pt-6">
                   <CardTitle className="text-xl text-primary">{project.title}</CardTitle>
                   <CardDescription className="text-foreground/80 text-sm leading-relaxed">
                     {project.description}
@@ -384,11 +386,38 @@ export default function HomePage() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 bg-card/50 dark:bg-card/20">
-                  <Button asChild variant="default" className="w-full gap-2">
-                    <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
-                      View Project <ExternalLink className="w-4 h-4" />
-                    </Link>
-                  </Button>
+                  {project.title === 'R2re (ReturnToRestaurant)' ? (
+                    <div className="flex flex-col sm:flex-row w-full gap-2">
+                      {(project as any).appStoreUrl && (
+                        <Button asChild variant="default" className="flex-1 gap-2">
+                          <Link href={(project as any).appStoreUrl} target="_blank" rel="noopener noreferrer">
+                            <Store className="w-4 h-4" /> App Store
+                          </Link>
+                        </Button>
+                      )}
+                      {(project as any).googlePlayUrl && (
+                        <Button asChild variant="default" className="flex-1 gap-2">
+                          <Link href={(project as any).googlePlayUrl} target="_blank" rel="noopener noreferrer">
+                            <Store className="w-4 h-4" /> Google Play
+                          </Link>
+                        </Button>
+                      )}
+                      {/* Fallback if R2re has no store URLs */}
+                      {!(project as any).appStoreUrl && !(project as any).googlePlayUrl && (
+                         <Button asChild variant="default" className="w-full gap-2">
+                            <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                              View Project <ExternalLink className="w-4 h-4" />
+                            </Link>
+                          </Button>
+                      )}
+                    </div>
+                  ) : (
+                    <Button asChild variant="default" className="w-full gap-2">
+                      <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                        View Project <ExternalLink className="w-4 h-4" />
+                      </Link>
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>
             ))}
