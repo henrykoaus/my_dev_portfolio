@@ -16,7 +16,7 @@ const navItems = [
   { name: 'Projects', href: '/#projects', icon: <Briefcase className="h-5 w-5" /> },
   { name: 'Skills', href: '/#skills', icon: <Code className="h-5 w-5" /> },
   { name: 'Contact', href: '/#contact', icon: <MessageSquare className="h-5 w-5" /> },
-  { name: 'AI Suggester', href: '/ai-tools', icon: <Brain className="h-5 w-5" /> },
+  { name: 'AI Assist', href: '/ai-tools', icon: <Brain className="h-5 w-5" /> },
 ];
 
 interface NavbarProps {

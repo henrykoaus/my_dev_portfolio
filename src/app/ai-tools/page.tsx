@@ -37,7 +37,7 @@ export default function AiToolsPage() {
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-2xl mx-auto shadow-xl">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary">AI Project Suggester</CardTitle>
+          <CardTitle className="text-3xl font-bold text-primary">AI Project Assist</CardTitle>
           <CardDescription>
             Unsure what to build next for your project? Describe your skills and interests, and let our AI suggest some project ideas!
           </CardDescription>
