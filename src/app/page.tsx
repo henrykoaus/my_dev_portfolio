@@ -25,10 +25,10 @@ const projectData = [
     techStack: ['Ruby on Rails', 'PostgreSQL', 'Google Cloud Vision AI', 'Bootstrap', 'Hotwire', 'Heroku', 'HTML', 'CSS', 'JavaScript'],
   },
   {
-    title: 'Interactive Data Visualization Dashboard',
-    description: 'A web application for visualizing complex datasets with interactive charts and filters, built with React and D3.js.',
-    projectUrl: '#',
-    techStack: ['React', 'D3.js', 'Node.js', 'ShadCN UI'],
+    title: 'R2re (ReturnToRestaurant)',
+    description: 'R2:re (Return to Restaurant) is a platform that connects restaurant owners and customers, helping diners enjoy more meals at better value while boosting sales and customer loyalty for businesses. It supports small food businesses and revitalizes the dining market through smart rewards and engagement. Inspired by Australia’s Liven, R2:re drives innovation in Korea’s restaurant culture.',
+    projectUrl: '#', // Replace with actual project URL
+    techStack: ['Dart', 'Flutter', 'Google Cloud Platform', 'Firebase', 'Node.js', 'Express.js'],
   },
   {
     title: 'Mobile-First Social Networking App',
