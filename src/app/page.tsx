@@ -13,7 +13,7 @@ import {
   LayoutPanelTop, Store, LayoutGrid, ShoppingCart, ImageIcon as ImageIconLucide,
   NotebookText, ClipboardList, SearchCheck, TerminalSquare, 
   Waypoints, Blocks, Zap, Gauge, Rocket, MonitorSmartphone, Laptop, UploadCloud, HardDrive,
-  Accessibility as AccessibilityIcon, Tool, Puzzle
+  Accessibility as AccessibilityIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -541,4 +541,5 @@ export default function HomePage() {
     
 
     
+
 
