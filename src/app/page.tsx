@@ -25,6 +25,12 @@ const projectData = [
     techStack: ['Ruby on Rails', 'PostgreSQL', 'Google Cloud Vision AI', 'Bootstrap', 'Hotwire', 'Heroku', 'HTML', 'CSS', 'JavaScript'],
   },
   {
+    title: 'Tripnomad - Automated Blog Publisher',
+    description: 'Developed a custom automation tool for WordPress that streamlines blog post creation and scheduling using PHP, WordPress hooks, and custom functions. Reduced manual workload and improved content publishing consistency.',
+    projectUrl: 'https://www.tripnomad.net/',
+    techStack: ['WordPress', 'AWS EC2', 'Linux', 'Apache', 'MariaDB (MySQL)', 'PHP', 'HTML', 'CSS', 'JavaScript'],
+  },
+  {
     title: 'R2re (ReturnToRestaurant)',
     description: 'R2:re (Return to Restaurant) is a platform that connects restaurant owners and customers, helping diners enjoy more meals at better value while boosting sales and customer loyalty for businesses. It supports small food businesses and revitalizes the dining market through smart rewards and engagement. Inspired by Australia’s Liven, R2:re drives innovation in Korea’s restaurant culture.',
     projectUrl: '#', 
@@ -39,12 +45,6 @@ const projectData = [
     appStoreUrl: 'https://apps.apple.com/au/app/알투레사장님/id6497567753', 
     googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.r2rekorea.r2reowner&pcampaignid=web_share',
     techStack: ['Dart', 'Flutter', 'Google Cloud Platform', 'Firebase', 'Node.js', 'Express.js'],
-  },
-  {
-    title: 'Tripnomad - Automated Blog Publisher',
-    description: 'Developed a custom automation tool for WordPress that streamlines blog post creation and scheduling using PHP, WordPress hooks, and custom functions. Reduced manual workload and improved content publishing consistency.',
-    projectUrl: 'https://www.tripnomad.net/',
-    techStack: ['WordPress', 'AWS EC2', 'Linux', 'Apache', 'MariaDB (MySQL)', 'PHP', 'HTML', 'CSS', 'JavaScript'],
   },
 ];
 
