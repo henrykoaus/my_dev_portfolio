@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils';
 const projectData = [
   {
     title: 'DTWash (DoorToWash)',
-    description: 'DoorToWash is a convenient laundry delivery service like laundry version of Uber/AirBnb thus it has customer side and service provider side, using Google Cloud Vision AI for photo recognition to tell about the clothes for the laundry including types and colours of the clothes. Login Details - Customer: "henry_customer@gmail.com", Merchant: "henry_service@gmail.com", Password (for both): "123456".',
+    description: 'DoorToWash is a convenient laundry delivery service like laundry version of Uber/AirBnb thus it has customer side and service provider side, using Google Cloud Vision AI for photo recognition to tell about the clothes for the laundry including types and colours of the clothes.',
     projectUrl: 'https://dtwash-henry-46d72d94ed50.herokuapp.com/',
     techStack: ['Ruby on Rails', 'PostgreSQL', 'Google Cloud Vision AI', 'Bootstrap', 'Hotwire', 'Heroku', 'HTML', 'CSS', 'JavaScript'],
   },
@@ -517,3 +517,4 @@ export default function HomePage() {
     
 
     
+
