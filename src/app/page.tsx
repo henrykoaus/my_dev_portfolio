@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/components/ui/card';
 import { 
   Briefcase, GraduationCap, Linkedin, Github, Instagram, AtSign, 
   CodeXml, Palette, FileCode2, ServerCog, Database, GitFork, 
@@ -15,7 +15,6 @@ import {
   Waypoints, Blocks, Zap, Gauge, Rocket, MonitorSmartphone, Laptop, UploadCloud, HardDrive,
   Accessibility as AccessibilityIcon
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const projectData = [
   {
