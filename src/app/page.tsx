@@ -14,18 +14,18 @@ import {
   LayoutPanelTop, Store, LayoutGrid, ShoppingCart, ImageIcon as ImageIconLucide,
   NotebookText, ClipboardList, SearchCheck, TerminalSquare, 
   Waypoints, Blocks, Zap, Gauge, Rocket, MonitorSmartphone, Laptop, UploadCloud, HardDrive,
-  Accessibility as AccessibilityIcon 
+  Accessibility as AccessibilityIcon, Tool, Puzzle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const projectData = [
   {
-    title: 'AI Powered E-commerce Platform',
-    description: 'A full-stack e-commerce site with AI-driven product recommendations and personalized shopping experiences.',
+    title: 'DTWash (DoorToWash)',
+    description: 'DoorToWash is a convenient laundry delivery service like laundry version of Uber/AirBnb thus it has customer side and service provider side, using Google Cloud Vision AI for photo recognition to tell about the clothes for the laundry including types and colours of the clothes.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'e-commerce ai',
-    projectUrl: '#',
-    techStack: ['Next.js', 'Genkit', 'Tailwind CSS', 'Firebase'],
+    imageHint: 'laundry app',
+    projectUrl: 'https://dtwash-henry-46d72d94ed50.herokuapp.com/',
+    techStack: ['Ruby on Rails', 'PostgreSQL', 'Google Cloud Vision AI', 'Bootstrap', 'Hotwire', 'Heroku'],
   },
   {
     title: 'Interactive Data Visualization Dashboard',
@@ -60,17 +60,19 @@ const skillsDataCategorized: SkillCategoryData[] = [
     title: "Languages & Frameworks",
     skills: [
       { name: "HTML", icon: <CodeXml className="w-10 h-10" /> },
-      { name: "CSS", icon: <Palette className="w-10 h-10" /> },
+      { name: "CSS/SCSS", icon: <Palette className="w-10 h-10" /> },
       { name: "JavaScript", icon: <FileCode2 className="w-10 h-10" /> },
       { name: "TypeScript", icon: <FileCode2 className="w-10 h-10" /> },
       { name: "React", icon: <AppWindow className="w-10 h-10" /> },
+      { name: "Next.js", icon: <AppWindow className="w-10 h-10" /> },
       { name: "Node.js", icon: <ServerCog className="w-10 h-10" /> },
       { name: "Express.js", icon: <ServerCog className="w-10 h-10" /> },
+      { name: "Ruby", icon: <Gem className="w-10 h-10" /> },
+      { name: "Ruby on Rails", icon: <Gem className="w-10 h-10" /> },
       { name: "PHP", icon: <FileCode2 className="w-10 h-10" /> },
       { name: "SQL", icon: <Database className="w-10 h-10" /> },
       { name: "Dart", icon: <Smartphone className="w-10 h-10" /> },
       { name: "Flutter", icon: <Smartphone className="w-10 h-10" /> },
-      { name: "Ruby on Rails", icon: <Gem className="w-10 h-10" /> },
       { name: "Vue.js", icon: <AppWindow className="w-10 h-10" /> },
       { name: "jQuery", icon: <FileCode2 className="w-10 h-10" /> },
     ]
@@ -84,7 +86,7 @@ const skillsDataCategorized: SkillCategoryData[] = [
       { name: "Command Line Tools", icon: <TerminalSquare className="w-10 h-10" /> },
       { name: "Android Studio", icon: <Smartphone className="w-10 h-10" /> },
       { name: "Xcode", icon: <Laptop className="w-10 h-10" /> },
-      { name: "Google Cloud (Firebase)", icon: <Cloud className="w-10 h-10" /> },
+      { name: "Firebase", icon: <Cloud className="w-10 h-10" /> },
       { name: "AWS (EC2)", icon: <CloudCog className="w-10 h-10" /> },
       { name: "Heroku", icon: <UploadCloud className="w-10 h-10" /> },
       { name: "Apache", icon: <Server className="w-10 h-10" /> },
@@ -133,6 +135,8 @@ const skillsDataCategorized: SkillCategoryData[] = [
   {
     title: "Specialized & Other Skills",
     skills: [
+      { name: "Genkit (AI)", icon: <Brain className="w-10 h-10" /> },
+      { name: "Google Cloud Vision AI", icon: <CloudCog className="w-10 h-10" /> },
       { name: "WordPress Automation", icon: <Zap className="w-10 h-10" /> },
       { name: "Hybrid Mobile Apps", icon: <Smartphone className="w-10 h-10" /> },
       { name: "SaaS Publishing", icon: <Rocket className="w-10 h-10" /> },
@@ -143,7 +147,7 @@ const skillsDataCategorized: SkillCategoryData[] = [
 const socialLinks = [
   { name: 'LinkedIn', icon: <Linkedin className="w-6 h-6" />, url: '#' },
   { name: 'GitHub', icon: <Github className="w-6 h-6" />, url: '#' },
-  { name: 'Threads', icon: <AtSign className="w-6 h-6" />, url: '#' }, // Using AtSign as a placeholder for Threads
+  { name: 'Threads', icon: <AtSign className="w-6 h-6" />, url: '#' }, 
   { name: 'Instagram', icon: <Instagram className="w-6 h-6" />, url: '#' },
 ];
 
@@ -254,7 +258,7 @@ export default function HomePage() {
   const [activeAboutTab, setActiveAboutTab] = useState<'experience' | 'education'>('experience');
   const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
   const [areAllSkillsShown, setAreAllSkillsShown] = useState(false);
-  const initialVisibleSkillCategories = 1; // Show only "Languages & Frameworks" by default
+  const initialVisibleSkillCategories = 1; 
 
   const SkillCard = ({ name, icon }: SkillItem) => (
     <div className="flex flex-col items-center p-4 bg-card rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
@@ -422,7 +426,7 @@ export default function HomePage() {
               <Button
                 onClick={() => setAreAllSkillsShown(!areAllSkillsShown)}
                 variant="outline"
-                className="w-full mt-0 mb-8" // Adjusted mt-0 as button appears after the first category
+                className="w-full mt-0 mb-8" 
               >
                 {areAllSkillsShown ? 'Show Fewer Skills' : 'Show All Skills'}
                 {areAllSkillsShown ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
@@ -476,3 +480,6 @@ export default function HomePage() {
     </>
   );
 }
+
+
+    
