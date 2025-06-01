@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -38,7 +39,7 @@ export default function AiToolsPage() {
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-primary">AI Project Suggester</CardTitle>
           <CardDescription>
-            Unsure what to build next for your portfolio? Describe your skills and interests, and let our AI suggest some project ideas!
+            Unsure what to build next for your project? Describe your skills and interests, and let our AI suggest some project ideas!
           </CardDescription>
         </CardHeader>
         <CardContent>
