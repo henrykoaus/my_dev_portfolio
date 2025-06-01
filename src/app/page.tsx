@@ -321,19 +321,10 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
               <p>
-                I am an AI-savvy Software Developer dedicated to leveraging cutting-edge AI tools to maximize efficiency, automate processes, and enhance application performance. My collaborative spirit thrives on clear communication and active teamwork, fostering productive and engaging development environments.
+                As an AI-savvy Software Developer, I leverage cutting-edge AI to enhance efficiency, drive automation, and optimise application performance. I'm a strong communicator and thrive in collaborative environments, believing teamwork is key to delivering impactful solutions.
               </p>
               <p>
-                My passion lies in architecting tools and systems that simplify complexities, spanning responsive web platforms, hybrid mobile apps, and intelligent workflow automations. I specialize in engineering clean, maintainable codebases that deliver seamless functionality and tangible real-world usability.
-              </p>
-              <p>
-                My recent explorations focus on WordPress automation, designing low-maintenance web architectures, and integrating third-party APIs to build fast, scalable, and intuitive solutions. I am enthusiastic about the entire development lifecycle, from strategic planning and coding to rigorous problem-solving and performance optimization.
-              </p>
-              <p>
-                My journey into technology is enriched by a diverse background in demanding roles across government, social services, and healthcare. This unique foundation has equipped me with acute problem-solving abilities, profound empathy, and robust resilience. These experiences have cultivated my capacity for cross-disciplinary communication, composure under pressure, and a commitment to continuous learning—qualities I now channel into being a more effective and collaborative developer.
-              </p>
-              <p>
-                I am always keen to connect with fellow technology professionals and innovators. Whether you're pioneering the next breakthrough, streamlining processes through automation, or passionate about elegant code, I welcome the opportunity to connect and explore potential collaborations.
+                My passion lies in engineering tools and systems that simplify complex challenges – whether it's responsive web platforms, hybrid mobile apps, or intelligent workflow automations. I'm committed to crafting clean, maintainable code with a focus on real-world usability and enjoy the full development lifecycle. My diverse background in demanding sectors like government and healthcare has equipped me with robust problem-solving abilities, resilience, and a dedication to continuous learning, all of which enrich my approach to software development. I'm always keen to connect and discuss how I can contribute to innovative projects.
               </p>
             </div>
             <div className="flex justify-center space-x-4 mb-8">
