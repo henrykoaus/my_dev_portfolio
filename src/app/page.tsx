@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,24 +21,18 @@ const projectData = [
   {
     title: 'DTWash (DoorToWash)',
     description: 'DoorToWash is a convenient laundry delivery service like laundry version of Uber/AirBnb thus it has customer side and service provider side, using Google Cloud Vision AI for photo recognition to tell about the clothes for the laundry including types and colours of the clothes. Login Details - Customer: "henry_customer@gmail.com", Merchant: "henry_service@gmail.com", Password (for both): "123456".',
-    imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'laundry app',
     projectUrl: 'https://dtwash-henry-46d72d94ed50.herokuapp.com/',
     techStack: ['Ruby on Rails', 'PostgreSQL', 'Google Cloud Vision AI', 'Bootstrap', 'Hotwire', 'Heroku', 'HTML', 'CSS', 'JavaScript'],
   },
   {
     title: 'Interactive Data Visualization Dashboard',
     description: 'A web application for visualizing complex datasets with interactive charts and filters, built with React and D3.js.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'dashboard data',
     projectUrl: '#',
     techStack: ['React', 'D3.js', 'Node.js', 'ShadCN UI'],
   },
   {
     title: 'Mobile-First Social Networking App',
     description: 'A cross-platform mobile app focusing on local community engagement, featuring real-time chat and event organization.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'mobile social',
     projectUrl: '#',
     techStack: ['React Native', 'Firebase', 'TypeScript'],
   },
@@ -376,17 +369,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projectData.map((project, index) => (
               <Card key={index} className="flex flex-col overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 rounded-xl">
-                <CardHeader className="p-0">
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-48 object-cover"
-                    data-ai-hint={project.imageHint}
-                  />
-                </CardHeader>
-                <CardContent className="flex-grow p-6 space-y-3">
+                <CardContent className="flex-grow p-6 space-y-3 pt-6"> {/* Added pt-6 here */}
                   <CardTitle className="text-xl text-primary">{project.title}</CardTitle>
                   <CardDescription className="text-foreground/80 text-sm leading-relaxed">
                     {project.description}
@@ -480,3 +463,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
