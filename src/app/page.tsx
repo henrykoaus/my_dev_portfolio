@@ -263,6 +263,14 @@ export default function HomePage() {
   const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
   const [areAllSkillsShown, setAreAllSkillsShown] = useState(false);
   const initialVisibleSkillCategories = 1; 
+  const [showTechStack, setShowTechStack] = useState<Record<number, boolean>>({});
+
+  const toggleTechStackVisibility = (index: number) => {
+    setShowTechStack(prevState => ({
+      ...prevState,
+      [index]: !prevState[index]
+    }));
+  };
 
   const SkillCard = ({ name, icon }: SkillItem) => (
     <div className="flex flex-col items-center p-4 bg-card rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
@@ -386,12 +394,27 @@ export default function HomePage() {
                     {project.description}
                   </CardDescription>
                   <div className="pt-2">
-                    <h4 className="text-xs font-semibold text-muted-foreground mb-1">TECH STACK:</h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.techStack.map(tech => (
-                        <span key={tech} className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded-full">{tech}</span>
-                      ))}
+                    <div className="flex items-center justify-between mb-1">
+                        <h4 className="text-xs font-semibold text-muted-foreground">TECH STACK:</h4>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => toggleTechStackVisibility(index)}
+                            className="p-1 h-fit text-muted-foreground hover:text-accent"
+                            aria-expanded={!!showTechStack[index]}
+                            aria-controls={`tech-stack-${index}`}
+                        >
+                            {showTechStack[index] ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                            <span className="sr-only">{showTechStack[index] ? 'Hide' : 'Show'} tech stack</span>
+                        </Button>
                     </div>
+                    {showTechStack[index] && (
+                        <div id={`tech-stack-${index}`} className="flex flex-wrap gap-1.5">
+                        {project.techStack.map(tech => (
+                            <span key={tech} className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded-full">{tech}</span>
+                        ))}
+                        </div>
+                    )}
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 bg-card/50 dark:bg-card/20">
@@ -411,7 +434,6 @@ export default function HomePage() {
                           </Link>
                         </Button>
                       )}
-                      {/* Fallback if store URLs are '#' or not present, but projectUrl is */}
                       {(!((project as any).appStoreUrl && (project as any).appStoreUrl !== '#') && 
                         !((project as any).googlePlayUrl && (project as any).googlePlayUrl !== '#')) &&
                         project.projectUrl && project.projectUrl !== '#' && (
@@ -421,7 +443,6 @@ export default function HomePage() {
                             </Link>
                           </Button>
                       )}
-                       {/* Display project title if no valid links are available */}
                        {(!((project as any).appStoreUrl && (project as any).appStoreUrl !== '#') && 
                         !((project as any).googlePlayUrl && (project as any).googlePlayUrl !== '#')) &&
                         !(project.projectUrl && project.projectUrl !== '#') && (
@@ -517,4 +538,5 @@ export default function HomePage() {
     
 
     
+
 
