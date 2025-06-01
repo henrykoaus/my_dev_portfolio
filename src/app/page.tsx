@@ -293,14 +293,15 @@ export default function HomePage() {
   );
 
   const ExperienceEntry = ({ experience }: { experience: ExperienceItem }) => (
-    <div className="mb-6">
-      <h4 className="text-lg font-medium text-foreground">{experience.title} - {experience.company}</h4>
-      <p className="text-sm text-muted-foreground">{experience.dates}</p>
-      <ul className="list-disc list-inside mt-2 text-foreground/80 space-y-1 pl-4">
+    <div className="mb-8"> {/* Increased bottom margin for better separation */}
+      <h4 className="text-lg font-semibold text-primary">{experience.title}</h4>
+      <p className="text-md font-medium text-foreground/90 mb-1">{experience.company}</p>
+      <p className="text-sm text-muted-foreground mb-2">{experience.dates}</p>
+      <div className="text-foreground/80 space-y-1.5"> {/* Container for details */}
         {experience.details.map((detail, i) => (
-          <li key={i}>{detail}</li>
+          <p key={i} className="leading-relaxed">{detail}</p> // Each detail as a paragraph with relaxed leading
         ))}
-      </ul>
+      </div>
     </div>
   );
 
@@ -320,12 +321,12 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
-              <p>
-                As an AI-savvy Software Developer, I leverage cutting-edge AI to enhance efficiency, drive automation, and optimise application performance. I'm a strong communicator and thrive in collaborative environments, believing teamwork is key to delivering impactful solutions.
-              </p>
-              <p>
-                My passion lies in engineering tools and systems that simplify complex challenges – whether it's responsive web platforms, hybrid mobile apps, or intelligent workflow automations. I'm committed to crafting clean, maintainable code with a focus on real-world usability and enjoy the full development lifecycle. My diverse background in demanding sectors like government and healthcare has equipped me with robust problem-solving abilities, resilience, and a dedication to continuous learning, all of which enrich my approach to software development. I'm always keen to connect and discuss how I can contribute to innovative projects.
-              </p>
+            <p>
+              G'day! I'm a Full-Stack Developer with a real knack for AI. I build smart, efficient web applications by blending solid software engineering with the latest AI tools. My goal is to not only make things work well but also to enhance user experiences and automate those tricky, time-consuming tasks.
+            </p>
+            <p>
+              I've got a diverse background, including some high-pressure gigs in government and healthcare. These roles have sharpened my problem-solving skills, taught me the importance of clear communication, and shown me how to stay adaptable. Now, I bring that resilience and collaborative spirit to every tech project, aiming to create clean, maintainable solutions that genuinely make a difference.
+            </p>
             </div>
             <div className="flex justify-center space-x-4 mb-8">
               <Button
@@ -346,7 +347,7 @@ export default function HomePage() {
 
             {activeAboutTab === 'experience' && (
               <div className="text-left space-y-6 p-6 bg-secondary/50 rounded-lg">
-                <h3 className="text-xl font-semibold text-primary mb-4">Professional Experience</h3>
+                <h3 className="text-xl font-semibold text-primary mb-6">Professional Experience</h3>
                 {experienceData.slice(0, 1).map((exp, index) => (
                   <ExperienceEntry key={index} experience={exp} />
                 ))}
@@ -537,5 +538,7 @@ export default function HomePage() {
     </>
   );
 }
+
+    
 
     
