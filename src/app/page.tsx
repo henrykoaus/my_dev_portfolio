@@ -320,9 +320,7 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <p className="text-lg text-foreground leading-relaxed mb-8 text-left">
-              Problem-solver at heart with a strong focus on building clean, user-friendly, and efficient web applications. 
-              Not just a Developer but state of the art AI-savvy Developer with an excellent ability to use and keep up to date with new AI tools for maximising efficiency, automation and performance with a strong foundation in full-stack development, automation, and API integration. 
-              Background in health care, customer service with high-pressure, collaborative environments brings strong analytical thinking, interpersonal communication, and adaptability to every project.
+              I am a results-oriented Full-Stack Developer with a keen expertise in integrating AI to build intelligent, high-performance web applications. My approach combines robust software engineering principles with the strategic application of modern AI tools, aimed at boosting efficiency, automating complex tasks, and delivering exceptional user experiences. My background in demanding, collaborative roles has instilled strong analytical thinking, clear communication, and a proactive adaptability, enabling me to tackle challenges and drive innovation in dynamic project environments.
             </p>
             <div className="flex justify-center space-x-4 mb-8">
               <Button
@@ -538,5 +536,6 @@ export default function HomePage() {
     
 
     
+
 
 
