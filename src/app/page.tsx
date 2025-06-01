@@ -149,10 +149,10 @@ const skillsDataCategorized: SkillCategoryData[] = [
 ];
 
 const socialLinks = [
-  { name: 'LinkedIn', icon: <Linkedin className="w-6 h-6" />, url: '#' },
-  { name: 'GitHub', icon: <Github className="w-6 h-6" />, url: '#' },
-  { name: 'Threads', icon: <AtSign className="w-6 h-6" />, url: '#' }, 
-  { name: 'Instagram', icon: <Instagram className="w-6 h-6" />, url: '#' },
+  { name: 'LinkedIn', icon: <Linkedin className="w-8 h-8" />, url: 'https://www.linkedin.com/in/henry-jung-10017129b/' },
+  { name: 'GitHub', icon: <Github className="w-8 h-8" />, url: 'https://github.com/henrykoaus' },
+  { name: 'Threads', icon: <AtSign className="w-8 h-8" />, url: 'https://www.threads.com/@tripnomad210' }, 
+  { name: 'Instagram', icon: <Instagram className="w-8 h-8" />, url: 'https://www.instagram.com/tripnomad210/' },
 ];
 
 interface ExperienceItem {
@@ -293,13 +293,13 @@ export default function HomePage() {
   );
 
   const ExperienceEntry = ({ experience }: { experience: ExperienceItem }) => (
-    <div className="mb-8"> {/* Increased bottom margin for better separation */}
+    <div className="mb-8"> 
       <h4 className="text-lg font-semibold text-primary">{experience.title}</h4>
       <p className="text-md font-medium text-foreground/90 mb-1">{experience.company}</p>
       <p className="text-sm text-muted-foreground mb-2">{experience.dates}</p>
-      <div className="text-foreground/80 space-y-1.5"> {/* Container for details */}
+      <div className="text-foreground/80 space-y-1.5"> 
         {experience.details.map((detail, i) => (
-          <p key={i} className="leading-relaxed">{detail}</p> // Each detail as a paragraph with relaxed leading
+          <p key={i} className="leading-relaxed">{detail}</p> 
         ))}
       </div>
     </div>
@@ -321,11 +321,11 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
-            <p>
-              G'day! I'm a Full-Stack Developer with a real knack for AI. I build smart, efficient web applications by blending solid software engineering with the latest AI tools. My goal is to not only make things work well but also to enhance user experiences and automate those tricky, time-consuming tasks.
+             <p>
+              G'day! I’m an AI-savvy Full-Stack Developer, passionate about crafting smart, efficient web and mobile solutions. I thrive on leveraging the latest AI tools to maximise performance and automate complexities, always aiming to build applications that are not just functional but genuinely enhance user experiences. My approach is all about clean code, maintainable systems, and clear, collaborative communication.
             </p>
             <p>
-              I've got a diverse background, including some high-pressure gigs in government and healthcare. These roles have sharpened my problem-solving skills, taught me the importance of clear communication, and shown me how to stay adaptable. Now, I bring that resilience and collaborative spirit to every tech project, aiming to create clean, maintainable solutions that genuinely make a difference.
+              My journey into tech is a bit different – I’ve honed my problem-solving, resilience, and communication skills in high-stakes government and healthcare roles. This background gives me a unique edge in understanding diverse needs and delivering robust solutions. I'm always keen to learn, adapt, and contribute to a team that values innovation and a good chat.
             </p>
             </div>
             <div className="flex justify-center space-x-4 mb-8">
@@ -513,7 +513,7 @@ export default function HomePage() {
           <div className="bg-card p-8 rounded-xl shadow-xl max-w-md mx-auto">
             <div className="mb-8">
               <p className="text-foreground">
-                The best way to reach me is via email at: <a href="mailto:your.email@example.com" className="text-accent hover:underline font-medium">your.email@example.com</a>
+                The best way to reach me is via email at: <a href="mailto:henrykor210@gmail.com" className="text-accent hover:underline font-medium">henrykor210@gmail.com</a>
               </p>
             </div>
             
