@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Devfolio - Personal Developer Portfolio',
-  description: 'A modern and sleek personal developer portfolio built with Next.js and Tailwind CSS.',
+  title: "Devfolio - Henry's Personal Developer Portfolio",
+  description: "Henry's modern and sleek personal developer portfolio built with Next.js and Tailwind CSS.",
   keywords: ['developer', 'portfolio', 'react', 'nextjs', 'typescript', 'tailwindcss'],
 };
 

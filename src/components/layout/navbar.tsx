@@ -184,7 +184,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-primary transition-transform hover:scale-105">
-              Devfolio
+            Henry J
             </Link>
           </div>
           <div className="hidden md:flex items-center">
@@ -214,7 +214,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                     <div className="flex items-center justify-between p-4 border-b">
                         <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
                         <Link href="/" className="text-xl font-bold text-primary" onClick={() => setIsMobileMenuOpen(false)}>
-                            Devfolio
+                            Henry J
                         </Link>
                         <SheetClose asChild>
                             <Button variant="ghost" size="icon" aria-label="Close menu">

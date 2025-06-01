@@ -310,8 +310,11 @@ export default function HomePage() {
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary">
         <div className="text-center p-4">
-          <h1 className="text-5xl font-bold text-primary mb-4">Welcome to Devfolio</h1>
-          <p className="text-xl text-foreground mb-8">Your journey to an amazing developer portfolio starts here.</p>
+          <h1 className="text-5xl font-bold text-primary mb-4">Welcome to Henry's Dev Portfolio</h1>
+          <p className="text-xl text-foreground mb-8">You can start getting to know me from here. You are always welcome to reach out 😎</p>
+          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+            <Link href="/#contact">Contact me</Link>
+          </Button>
         </div>
       </section>
 
@@ -321,7 +324,7 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
-             <p>
+            <p>
               G'day! I’m an AI-savvy Full-Stack Developer, passionate about crafting smart, efficient web and mobile solutions. I thrive on leveraging the latest AI tools to maximise performance and automate complexities, always aiming to build applications that are not just functional but genuinely enhance user experiences. My approach is all about clean code, maintainable systems, and clear, collaborative communication.
             </p>
             <p>
@@ -494,10 +497,6 @@ export default function HomePage() {
             {areAllSkillsShown && skillsDataCategorized.slice(initialVisibleSkillCategories).map((category) => (
               <SkillCategoryDisplay key={category.title} title={category.title} skills={category.skills} />
             ))}
-            
-            <p className="mt-12 text-sm text-muted-foreground">
-              Note: Icons are representative. For a richer display, consider replacing them with official SVG logos where available.
-            </p>
           </div>
         </div>
       </section>
@@ -542,3 +541,4 @@ export default function HomePage() {
     
 
     
+

@@ -1,5 +1,5 @@
-# Firebase Studio
+# My Dev Portfolio
 
-This is a NextJS starter in Firebase Studio.
+Using NextJS with TypeScript and Tailwind CSS, and Gemini API for the AI Assist, 
 
-To get started, take a look at src/app/page.tsx.
+This web app is truly made for my Portfolio (Henry)

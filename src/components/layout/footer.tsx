@@ -20,8 +20,8 @@ export default function Footer() {
   return (
     <footer className="bg-muted py-6 text-center text-sm text-muted-foreground mt-auto">
       <div className="container mx-auto px-4">
-        <p>&copy; {currentYear} Devfolio. All rights reserved.</p>
-        <p className="mt-1">Built with Next.js and Tailwind CSS.</p>
+        <p>&copy; {currentYear} Henry's Dev Portfolio.</p>
+        <p className="mt-1">Built with Next.js with TypeScript and Tailwind CSS.</p>
       </div>
     </footer>
   );
