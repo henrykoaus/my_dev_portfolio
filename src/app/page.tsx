@@ -27,9 +27,17 @@ const projectData = [
   {
     title: 'R2re (ReturnToRestaurant)',
     description: 'R2:re (Return to Restaurant) is a platform that connects restaurant owners and customers, helping diners enjoy more meals at better value while boosting sales and customer loyalty for businesses. It supports small food businesses and revitalizes the dining market through smart rewards and engagement. Inspired by Australia’s Liven, R2:re drives innovation in Korea’s restaurant culture.',
-    projectUrl: '#', // Fallback if no store URLs
-    appStoreUrl: '#', // Replace with actual App Store URL
-    googlePlayUrl: '#', // Replace with actual Google Play URL
+    projectUrl: '#', 
+    appStoreUrl: '#', 
+    googlePlayUrl: '#', 
+    techStack: ['Dart', 'Flutter', 'Google Cloud Platform', 'Firebase', 'Node.js', 'Express.js'],
+  },
+  {
+    title: 'R2reOwner',
+    description: "R2reOwner is the companion app for R2:re (Return to Restaurant), designed specifically for restaurant owners and managers. It provides tools to manage listings, track customer engagement, redeem rewards, and analyze business performance, empowering them to optimize their operations and grow their customer base through the R2:re platform.",
+    projectUrl: '#',
+    appStoreUrl: '#', 
+    googlePlayUrl: '#',
     techStack: ['Dart', 'Flutter', 'Google Cloud Platform', 'Firebase', 'Node.js', 'Express.js'],
   },
   {
@@ -82,6 +90,7 @@ const skillsDataCategorized: SkillCategoryData[] = [
       { name: "Android Studio", icon: <Smartphone className="w-10 h-10" /> },
       { name: "Xcode", icon: <Laptop className="w-10 h-10" /> },
       { name: "Firebase", icon: <Cloud className="w-10 h-10" /> },
+      { name: "Google Cloud Platform", icon: <CloudCog className="w-10 h-10" /> },
       { name: "AWS (EC2)", icon: <CloudCog className="w-10 h-10" /> },
       { name: "Heroku", icon: <UploadCloud className="w-10 h-10" /> },
       { name: "Apache", icon: <Server className="w-10 h-10" /> },
@@ -386,37 +395,49 @@ export default function HomePage() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 bg-card/50 dark:bg-card/20">
-                  {project.title === 'R2re (ReturnToRestaurant)' ? (
+                  {(project as any).appStoreUrl || (project as any).googlePlayUrl ? (
                     <div className="flex flex-col sm:flex-row w-full gap-2">
-                      {(project as any).appStoreUrl && (
+                      {(project as any).appStoreUrl && (project as any).appStoreUrl !== '#' && (
                         <Button asChild variant="default" className="flex-1 gap-2">
                           <Link href={(project as any).appStoreUrl} target="_blank" rel="noopener noreferrer">
                             <Store className="w-4 h-4" /> App Store
                           </Link>
                         </Button>
                       )}
-                      {(project as any).googlePlayUrl && (
+                      {(project as any).googlePlayUrl && (project as any).googlePlayUrl !== '#' && (
                         <Button asChild variant="default" className="flex-1 gap-2">
                           <Link href={(project as any).googlePlayUrl} target="_blank" rel="noopener noreferrer">
                             <Store className="w-4 h-4" /> Google Play
                           </Link>
                         </Button>
                       )}
-                      {/* Fallback if R2re has no store URLs */}
-                      {!(project as any).appStoreUrl && !(project as any).googlePlayUrl && (
+                      {/* Fallback if store URLs are '#' or not present, but projectUrl is */}
+                      {(!((project as any).appStoreUrl && (project as any).appStoreUrl !== '#') && 
+                        !((project as any).googlePlayUrl && (project as any).googlePlayUrl !== '#')) &&
+                        project.projectUrl && project.projectUrl !== '#' && (
                          <Button asChild variant="default" className="w-full gap-2">
                             <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
                               View Project <ExternalLink className="w-4 h-4" />
                             </Link>
                           </Button>
                       )}
+                       {/* Display project title if no valid links are available */}
+                       {(!((project as any).appStoreUrl && (project as any).appStoreUrl !== '#') && 
+                        !((project as any).googlePlayUrl && (project as any).googlePlayUrl !== '#')) &&
+                        !(project.projectUrl && project.projectUrl !== '#') && (
+                          <p className="text-sm text-muted-foreground w-full text-center">More details soon.</p>
+                      )}
                     </div>
                   ) : (
-                    <Button asChild variant="default" className="w-full gap-2">
-                      <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
-                        View Project <ExternalLink className="w-4 h-4" />
-                      </Link>
-                    </Button>
+                    project.projectUrl && project.projectUrl !== '#' ? (
+                      <Button asChild variant="default" className="w-full gap-2">
+                        <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                          View Project <ExternalLink className="w-4 h-4" />
+                        </Link>
+                      </Button>
+                    ) : (
+                       <p className="text-sm text-muted-foreground w-full text-center">More details soon.</p>
+                    )
                   )}
                 </CardFooter>
               </Card>
