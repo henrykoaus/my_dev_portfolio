@@ -319,9 +319,23 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
           <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
-            <p className="text-lg text-foreground leading-relaxed mb-8 text-left">
-              I am a results-oriented Full-Stack Developer with a keen expertise in integrating AI to build intelligent, high-performance web applications. My approach combines robust software engineering principles with the strategic application of modern AI tools, aimed at boosting efficiency, automating complex tasks, and delivering exceptional user experiences. My background in demanding, collaborative roles has instilled strong analytical thinking, clear communication, and a proactive adaptability, enabling me to tackle challenges and drive innovation in dynamic project environments.
-            </p>
+            <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
+              <p>
+                I am an AI-savvy Software Developer dedicated to leveraging cutting-edge AI tools to maximize efficiency, automate processes, and enhance application performance. My collaborative spirit thrives on clear communication and active teamwork, fostering productive and engaging development environments.
+              </p>
+              <p>
+                My passion lies in architecting tools and systems that simplify complexities, spanning responsive web platforms, hybrid mobile apps, and intelligent workflow automations. I specialize in engineering clean, maintainable codebases that deliver seamless functionality and tangible real-world usability.
+              </p>
+              <p>
+                My recent explorations focus on WordPress automation, designing low-maintenance web architectures, and integrating third-party APIs to build fast, scalable, and intuitive solutions. I am enthusiastic about the entire development lifecycle, from strategic planning and coding to rigorous problem-solving and performance optimization.
+              </p>
+              <p>
+                My journey into technology is enriched by a diverse background in demanding roles across government, social services, and healthcare. This unique foundation has equipped me with acute problem-solving abilities, profound empathy, and robust resilience. These experiences have cultivated my capacity for cross-disciplinary communication, composure under pressure, and a commitment to continuous learning—qualities I now channel into being a more effective and collaborative developer.
+              </p>
+              <p>
+                I am always keen to connect with fellow technology professionals and innovators. Whether you're pioneering the next breakthrough, streamlining processes through automation, or passionate about elegant code, I welcome the opportunity to connect and explore potential collaborations.
+              </p>
+            </div>
             <div className="flex justify-center space-x-4 mb-8">
               <Button
                 onClick={() => setActiveAboutTab('experience')}
@@ -534,8 +548,3 @@ export default function HomePage() {
 }
 
     
-
-    
-
-
-
