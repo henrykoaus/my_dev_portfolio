@@ -41,10 +41,10 @@ const projectData = [
     techStack: ['Dart', 'Flutter', 'Google Cloud Platform', 'Firebase', 'Node.js', 'Express.js'],
   },
   {
-    title: 'Mobile-First Social Networking App',
-    description: 'A cross-platform mobile app focusing on local community engagement, featuring real-time chat and event organization.',
-    projectUrl: '#',
-    techStack: ['React Native', 'Firebase', 'TypeScript'],
+    title: 'Tripnomad - Automated Blog Publisher',
+    description: 'Developed a custom automation tool for WordPress that streamlines blog post creation and scheduling using PHP, WordPress hooks, and custom functions. Reduced manual workload and improved content publishing consistency.',
+    projectUrl: 'https://www.tripnomad.net/',
+    techStack: ['WordPress', 'AWS EC2', 'Linux', 'Apache', 'MariaDB (MySQL)', 'PHP', 'HTML', 'CSS', 'JavaScript'],
   },
 ];
 
@@ -513,5 +513,7 @@ export default function HomePage() {
     </>
   );
 }
+
+    
 
     
