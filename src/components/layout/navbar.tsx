@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -33,7 +34,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       if (pathname === '/') {
         setActiveHash(window.location.hash || '#hero');
       } else {
-        setActiveHash(''); // Clear hash if not on homepage to avoid highlighting section links
+        setActiveHash(''); 
       }
     };
 
@@ -45,7 +46,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       const sectionIds = ['hero']; 
       navItems.forEach(item => {
         if (item.href.startsWith('/#')) {
-          const id = item.href.substring(2);
+          const id = item.href.substring(2); // e.g., "about" from "/#about"
           if (id && !sectionIds.includes(id)) {
             sectionIds.push(id);
           }
@@ -56,38 +57,41 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         .filter(el => el !== null) as HTMLElement[];
     }
 
-
-    if (elementsToObserve.length === 0 && pathname !== '/') {
-       setActiveHash(''); // Ensure hash is cleared if no sections to observe (e.g. on /ai-tools)
+    if (elementsToObserve.length === 0) {
+       if (pathname !== '/') setActiveHash('');
         return () => {
             window.removeEventListener('hashchange', handleHashChange);
         };
     }
-    
-    if (elementsToObserve.length === 0 && pathname === '/') {
-        // If on homepage but no specific sections found (should not happen with hero always there)
-        // still listen for hash changes for direct navigation.
-        return () => {
-            window.removeEventListener('hashchange', handleHashChange);
-        };
-    }
-
 
     const observer = new IntersectionObserver(
       (entries) => {
-        let intersectedEntryFound = false;
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveHash(`#${entry.target.id}`);
-            intersectedEntryFound = true;
-            break; 
+        let newActiveSectionId = '';
+
+        // Iterate over observed elements in their defined order (top to bottom on the page)
+        for (const sectionElement of elementsToObserve) {
+          const entry = entries.find(e => e.target === sectionElement);
+          if (entry && entry.isIntersecting) {
+            newActiveSectionId = sectionElement.id;
+            break; // Found the topmost visible section that is intersecting
           }
         }
-        if (!intersectedEntryFound && pathname === '/' && window.scrollY < window.innerHeight * 0.1) {
-           setActiveHash('#hero');
+        
+        if (newActiveSectionId) {
+          setActiveHash(`#${newActiveSectionId}`);
+        } else if (pathname === '/' && window.scrollY < window.innerHeight * 0.05 && elementsToObserve.some(el => el.id === 'hero')) {
+          // Fallback to hero if at the very top of the page and no other section is actively intersecting.
+          // window.innerHeight * 0.05 means less than 5% of the viewport height scrolled.
+          setActiveHash('#hero');
         }
+        // If no section is intersecting and not at the very top, activeHash remains as is.
+        // This handles cases where user scrolls to an area between sections.
+        // The active link will be the last one that was active.
       },
-      { threshold: 0.5, rootMargin: "-64px 0px -30% 0px" } 
+      { 
+        threshold: 0.1, // Consider a section for active state if 10% of it is visible in the rootMargin-defined viewport.
+        rootMargin: "-64px 0px -45% 0px" // Offset top by navbar height. Bottom detection edge raised by 45% of viewport height.
+      } 
     );
 
     elementsToObserve.forEach(el => observer.observe(el));
@@ -98,7 +102,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         if (el) observer.unobserve(el);
       });
     };
-  }, [pathname]);
+  }, [pathname]); // Re-run when pathname changes
 
 
   const isLinkActive = (href: string) => {
@@ -107,10 +111,11 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         return activeHash === '#hero' || activeHash === '' || activeHash === '#';
       }
       if (href.startsWith('/#')) { 
+        // activeHash includes '#' (e.g., "#about"), href.substring(1) also includes '#' (e.g., "/#about" -> "#about")
         return activeHash === href.substring(1); 
       }
     }
-    // For distinct pages like /ai-tools, active if pathname matches and no hash fragment is active for a section
+    // For distinct pages like /ai-tools
     return pathname === href && (activeHash === '' || !navItems.some(item => item.href.endsWith(activeHash) && item.href.startsWith('/#')));
   };
   
