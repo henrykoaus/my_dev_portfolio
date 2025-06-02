@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -264,6 +264,7 @@ export default function HomePage() {
   const [areAllSkillsShown, setAreAllSkillsShown] = useState(false);
   const initialVisibleSkillCategories = 1; 
   const [showTechStack, setShowTechStack] = useState<Record<number, boolean>>({});
+  const [isAboutMeExpanded, setIsAboutMeExpanded] = useState(false);
 
   const toggleTechStackVisibility = (index: number) => {
     setShowTechStack(prevState => ({
@@ -325,7 +326,7 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto bg-card p-8 rounded-xl shadow-xl">
             <div className="mb-8">
               <Image
-                src="/profile-image.png" 
+                src="/images/profile-image.jpg" 
                 alt="Henry Jung profile picture"
                 width={180}
                 height={180}
@@ -334,13 +335,36 @@ export default function HomePage() {
               />
             </div>
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
-            <p className="text-center">🇦🇺 🏘️ 🇰🇷</p>
-            <p>
-            G'day! I’m an AI-savvy Full-Stack Developer, driven to craft smart, efficient web and mobile solutions. I’m all about using the latest in AI to boost performance and streamline processes, always aiming to build apps that are not just functional but genuinely improve user experiences. Think clean code, robust systems, and a friendly, collaborative approach.
-            </p>
-            <p>
-            My tech journey kicked off after building solid problem-solving, resilience, and communication skills in high-stakes government and healthcare roles here in Australia. This background gives me a unique perspective on diverse needs and helps me deliver quality outcomes. I’m always keen to learn, adapt, and yarn with a team that values innovation.
-            </p>
+              <p className="text-center">🇦🇺 🏘️ 🇰🇷</p>
+              <p>
+                I’m not just a Developer but AI-savvy Software Developer with an excellent ability to use and keep up to date with new AI tools for maximising efficiency, automation and performance, and also a great fun communicator who gets motivated by ongoing communication and active interactions with colleagues.
+              </p>
+              <p>
+                I am passionate about building tools and systems that make life simpler — from responsive web apps to hybrid mobile applications and workflow automations. I specialise in creating clean, maintainable solutions that not only function smoothly behind the scenes but also enhance real-world usability.
+              </p>
+
+              <Button 
+                onClick={() => setIsAboutMeExpanded(!isAboutMeExpanded)} 
+                variant="outline" 
+                className="w-full mt-4 mb-4"
+              >
+                {isAboutMeExpanded ? 'See Less' : 'See More'}
+                {isAboutMeExpanded ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
+              </Button>
+
+              {isAboutMeExpanded && (
+                <>
+                  <p>
+                    Lately, I’ve been exploring automation in WordPress blog posting, low-maintenance web systems, and integration of third-party APIs to deliver fast, scalable, and user-friendly solutions. I enjoy every phase of the dev cycle — from planning and coding to problem-solving and optimisation.
+                  </p>
+                  <p>
+                    My path into tech is unique. I bring a strong foundation from high-pressure roles in government, social services and healthcare sectors, where I developed sharp problem-solving skills, empathy, and resilience. These experiences taught me how to communicate across disciplines, stay composed under stress, and continuously learn — traits that now make me a better developer and collaborator.
+                  </p>
+                  <p>
+                    I’m always excited to connect with others in tech — whether you’re building the next big thing, automating the boring stuff, or just want to geek out over clean code. Let’s connect!
+                  </p>
+                </>
+              )}
             </div>
             <div className="flex justify-center space-x-4 mb-8">
               <Button
@@ -548,5 +572,7 @@ export default function HomePage() {
     </>
   );
 }
+
+    
 
     
