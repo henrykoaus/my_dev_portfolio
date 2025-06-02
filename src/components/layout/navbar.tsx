@@ -3,8 +3,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, useMemo } from 'react';
-import { Menu, X, Briefcase, Code, User, MessageSquare, Brain } from 'lucide-react'; // Removed Sun, Moon
+import { useState, useEffect } from 'react';
+import { Menu, X, Briefcase, Code, User, MessageSquare, Brain, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from '@/components/ui/sheet';
 import { Switch } from '@/components/ui/switch';
@@ -23,36 +23,6 @@ interface NavbarProps {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
 }
-
-// Simplified Australian Flag Icon (7-pointed star)
-const AustralianFlagIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path d="M12 1.6L14.3 6.25L19.5 7.01L15.75 10.7L16.79 15.9L12 13.21L7.21 15.9L8.25 10.7L4.5 7.01L9.7 6.25L12 1.6Z"/>
-  </svg>
-);
-
-// Simplified Korean Flag Icon (Taegeuk symbol)
-const KoreanFlagIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 32 32"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <circle cx="16" cy="16" r="9" fill="#CD2E3A"/> {/* Red half */}
-    <path d="M16 7 A9 9 0 0 0 16 25" fill="#0047A0"/> {/* Blue half */}
-    {/* Create the S-curve illusion */}
-    <path d="M16 7 A4.5 4.5 0 0 1 16 16 A4.5 4.5 0 0 0 16 7 Z" fill="#CD2E3A"/>
-    <path d="M16 25 A4.5 4.5 0 0 1 16 16 A4.5 4.5 0 0 0 16 25 Z" fill="#0047A0"/>
-  </svg>
-);
-
 
 export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const pathname = usePathname();
@@ -179,20 +149,19 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
   const ThemeToggleSwitch = ({ id }: { id: string }) => (
     <div className="flex items-center space-x-2">
-      <AustralianFlagIcon className="h-5 w-5 text-yellow-500" />
+      {theme === 'dark' ? <Moon className="h-5 w-5 text-yellow-400" /> : <Sun className="h-5 w-5 text-orange-400" />}
       <Switch
         id={id}
         checked={theme === 'dark'}
         onCheckedChange={toggleTheme}
         aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
       />
-      <KoreanFlagIcon className="h-5 w-5" />
     </div>
   );
 
   const MobileThemeToggleSwitch = ({ id }: { id: string }) => (
     <div className="flex items-center space-x-1">
-      <AustralianFlagIcon className="h-4 w-4 text-yellow-500" />
+      {theme === 'dark' ? <Moon className="h-4 w-4 text-yellow-400" /> : <Sun className="h-4 w-4 text-orange-400" />}
       <Switch
         id={id}
         checked={theme === 'dark'}
@@ -200,7 +169,6 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         className="h-5 w-9 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input [&>span]:h-4 [&>span]:w-4 [&>span[data-state=checked]]:translate-x-4 [&>span[data-state=unchecked]]:translate-x-0"
         aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
       />
-      <KoreanFlagIcon className="h-4 w-4" />
     </div>
   );
 
