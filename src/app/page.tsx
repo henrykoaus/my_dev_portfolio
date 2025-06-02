@@ -326,7 +326,7 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto bg-card p-8 rounded-xl shadow-xl">
             <div className="mb-8">
               <Image
-                src="/images/profile-image.jpg" 
+                src="/profile-image.png" 
                 alt="Henry Jung profile picture"
                 width={180}
                 height={180}
@@ -337,7 +337,7 @@ export default function HomePage() {
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
               <p className="text-center">🇦🇺 🏘️ 🇰🇷</p>
               <p>
-                I’m not just a Developer but AI-savvy Software Developer with an excellent ability to use and keep up to date with new AI tools for maximising efficiency, automation and performance, and also a great fun communicator who gets motivated by ongoing communication and active interactions with colleagues.
+                G'day! I’m an AI-savvy Software Developer with an excellent ability to use and keep up to date with new AI tools for maximising efficiency, automation and performance, and also a great fun communicator who gets motivated by ongoing communication and active interactions with colleagues.
               </p>
               <p>
                 I am passionate about building tools and systems that make life simpler — from responsive web apps to hybrid mobile applications and workflow automations. I specialise in creating clean, maintainable solutions that not only function smoothly behind the scenes but also enhance real-world usability.
