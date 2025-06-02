@@ -325,15 +325,16 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto bg-card p-8 rounded-xl shadow-xl">
             <div className="mb-8">
               <Image
-                src="/images/profile-image.jpg" 
+                src="/profile-image.png" 
                 alt="Henry Jung profile picture"
-                width={200}
-                height={200}
+                width={180}
+                height={180}
                 className="rounded-full mx-auto shadow-lg object-cover"
                 priority 
               />
             </div>
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
+            <p className="text-center">🇦🇺 🏘️ 🇰🇷</p>
             <p>
             G'day! I’m an AI-savvy Full-Stack Developer, driven to craft smart, efficient web and mobile solutions. I’m all about using the latest in AI to boost performance and streamline processes, always aiming to build apps that are not just functional but genuinely improve user experiences. Think clean code, robust systems, and a friendly, collaborative approach.
             </p>
@@ -371,7 +372,7 @@ export default function HomePage() {
                     variant="outline" 
                     className="w-full mt-4"
                   >
-                    {isExperienceExpanded ? 'Show Less Experience' : 'Show More Experience'}
+                    {isExperienceExpanded ? 'See Less' : 'See More'}
                     {isExperienceExpanded ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
                   </Button>
                 )}
@@ -499,7 +500,7 @@ export default function HomePage() {
                 variant="outline"
                 className="w-full mt-0 mb-8" 
               >
-                {areAllSkillsShown ? 'Show Fewer Skills' : 'Show All Skills'}
+                {areAllSkillsShown ? 'See Less' : 'See More'}
                 {areAllSkillsShown ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
               </Button>
             )}
