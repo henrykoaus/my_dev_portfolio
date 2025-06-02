@@ -1,9 +1,8 @@
-
 "use client";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu, X, Briefcase, Code, User, MessageSquare, Brain, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from '@/components/ui/sheet';
@@ -11,7 +10,7 @@ import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { name: 'Home', href: '/', icon: <User className="h-5 w-5" /> },
+  { name: 'Home', href: '/', icon: <User className="h-5 w-5" /> }, // Targets hero section implicitly
   { name: 'About', href: '/#about', icon: <User className="h-5 w-5" /> },
   { name: 'Projects', href: '/#projects', icon: <Briefcase className="h-5 w-5" /> },
   { name: 'Skills', href: '/#skills', icon: <Code className="h-5 w-5" /> },
@@ -34,16 +33,16 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       if (pathname === '/') {
         setActiveHash(window.location.hash || '#hero');
       } else {
-        setActiveHash('');
+        setActiveHash(''); // Clear hash if not on homepage to avoid highlighting section links
       }
     };
 
-    handleHashChange();
+    handleHashChange(); 
     window.addEventListener('hashchange', handleHashChange);
 
     let elementsToObserve: HTMLElement[] = [];
     if (pathname === '/') {
-      const sectionIds = ['hero'];
+      const sectionIds = ['hero']; 
       navItems.forEach(item => {
         if (item.href.startsWith('/#')) {
           const id = item.href.substring(2);
@@ -59,13 +58,15 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
 
     if (elementsToObserve.length === 0 && pathname !== '/') {
-       setActiveHash('');
+       setActiveHash(''); // Ensure hash is cleared if no sections to observe (e.g. on /ai-tools)
         return () => {
             window.removeEventListener('hashchange', handleHashChange);
         };
     }
     
     if (elementsToObserve.length === 0 && pathname === '/') {
+        // If on homepage but no specific sections found (should not happen with hero always there)
+        // still listen for hash changes for direct navigation.
         return () => {
             window.removeEventListener('hashchange', handleHashChange);
         };
@@ -79,14 +80,14 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
           if (entry.isIntersecting) {
             setActiveHash(`#${entry.target.id}`);
             intersectedEntryFound = true;
-            break;
+            break; 
           }
         }
         if (!intersectedEntryFound && pathname === '/' && window.scrollY < window.innerHeight * 0.1) {
            setActiveHash('#hero');
         }
       },
-      { threshold: 0.5, rootMargin: "-64px 0px -30% 0px" }
+      { threshold: 0.5, rootMargin: "-64px 0px -30% 0px" } 
     );
 
     elementsToObserve.forEach(el => observer.observe(el));
@@ -101,17 +102,18 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
 
   const isLinkActive = (href: string) => {
-    if (pathname === '/') {
-      if (href === '/') {
+    if (pathname === '/') { 
+      if (href === '/') { 
         return activeHash === '#hero' || activeHash === '' || activeHash === '#';
       }
-      if (href.startsWith('/#')) {
-        return activeHash === href.substring(1);
+      if (href.startsWith('/#')) { 
+        return activeHash === href.substring(1); 
       }
     }
+    // For distinct pages like /ai-tools, active if pathname matches and no hash fragment is active for a section
     return pathname === href && (activeHash === '' || !navItems.some(item => item.href.endsWith(activeHash) && item.href.startsWith('/#')));
   };
-
+  
   const NavLink = ({ href, children, onClick }: { href: string, children: React.ReactNode, onClick?: () => void }) => (
     <Link
       href={href}
@@ -149,19 +151,20 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
   const ThemeToggleSwitch = ({ id }: { id: string }) => (
     <div className="flex items-center space-x-2">
-      {theme === 'dark' ? <Moon className="h-5 w-5 text-yellow-400" /> : <Sun className="h-5 w-5 text-orange-400" />}
+      <Sun className="h-5 w-5 text-yellow-500" aria-hidden="true" />
       <Switch
         id={id}
         checked={theme === 'dark'}
         onCheckedChange={toggleTheme}
         aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
       />
+      <Moon className="h-5 w-5 text-slate-500" aria-hidden="true" />
     </div>
   );
-
+  
   const MobileThemeToggleSwitch = ({ id }: { id: string }) => (
     <div className="flex items-center space-x-1">
-      {theme === 'dark' ? <Moon className="h-4 w-4 text-yellow-400" /> : <Sun className="h-4 w-4 text-orange-400" />}
+      <Sun className="h-4 w-4 text-yellow-500" aria-hidden="true" />
       <Switch
         id={id}
         checked={theme === 'dark'}
@@ -169,6 +172,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         className="h-5 w-9 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input [&>span]:h-4 [&>span]:w-4 [&>span[data-state=checked]]:translate-x-4 [&>span[data-state=unchecked]]:translate-x-0"
         aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
       />
+      <Moon className="h-4 w-4 text-slate-500" aria-hidden="true" />
     </div>
   );
 
@@ -219,12 +223,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                     </div>
                     <div className="flex-grow p-4 space-y-2 overflow-y-auto">
                     {navItems.map((item) => (
-                        <MobileNavLink
-                            key={item.name}
-                            href={item.href}
-                            name={item.name}
+                        <MobileNavLink 
+                            key={item.name} 
+                            href={item.href} 
+                            name={item.name} 
                             icon={item.icon}
-                            onClick={() => setIsMobileMenuOpen(false)}
+                            onClick={() => setIsMobileMenuOpen(false)} 
                         />
                     ))}
                     </div>

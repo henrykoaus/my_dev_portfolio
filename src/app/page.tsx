@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/components/ui/card';
 import { 
@@ -296,7 +297,7 @@ export default function HomePage() {
       <h4 className="text-lg font-semibold text-primary">{experience.title}</h4>
       <p className="text-md font-medium text-foreground/90 mb-1">{experience.company}</p>
       <p className="text-sm text-muted-foreground mb-2">{experience.dates}</p>
-      <div className="text-foreground/80 space-y-1.5"> 
+      <div className="text-foreground/80 space-y-3"> 
         {experience.details.map((detail, i) => (
           <p key={i} className="leading-relaxed">{detail}</p> 
         ))}
@@ -320,14 +321,24 @@ export default function HomePage() {
       {/* About Me Section */}
       <section id="about" className="min-h-screen flex items-center justify-center bg-background">
         <div className="container mx-auto px-4 py-16 text-center">
-          <h2 className="text-4xl font-bold text-primary mb-16">About Me</h2>
-          <div className="max-w-3xl mx-auto mb-8 bg-card p-8 rounded-xl shadow-xl">
+          <h2 className="text-4xl font-bold text-primary mb-12">About Me</h2>
+          <div className="max-w-3xl mx-auto bg-card p-8 rounded-xl shadow-xl">
+            <div className="mb-8">
+              <Image
+                src="/images/profile-image.jpg" 
+                alt="Henry Jung profile picture"
+                width={200}
+                height={200}
+                className="rounded-full mx-auto shadow-lg object-cover"
+                priority 
+              />
+            </div>
             <div className="text-lg text-foreground leading-relaxed text-left space-y-6 mb-8">
             <p>
-              G'day! I’m an AI-savvy Full-Stack Developer, passionate about crafting smart, efficient web and mobile solutions. I thrive on leveraging the latest AI tools to maximise performance and automate complexities, always aiming to build applications that are not just functional but genuinely enhance user experiences. My approach is all about clean code, maintainable systems, and clear, collaborative communication.
+            G'day! I’m an AI-savvy Full-Stack Developer, driven to craft smart, efficient web and mobile solutions. I’m all about using the latest in AI to boost performance and streamline processes, always aiming to build apps that are not just functional but genuinely improve user experiences. Think clean code, robust systems, and a friendly, collaborative approach.
             </p>
             <p>
-              My journey into tech is a bit different – I’ve honed my problem-solving, resilience, and communication skills in high-stakes government and healthcare roles. This background gives me a unique edge in understanding diverse needs and delivering robust solutions. I'm always keen to learn, adapt, and contribute to a team that values innovation and a good chat.
+            My tech journey kicked off after building solid problem-solving, resilience, and communication skills in high-stakes government and healthcare roles here in Australia. This background gives me a unique perspective on diverse needs and helps me deliver quality outcomes. I’m always keen to learn, adapt, and yarn with a team that values innovation.
             </p>
             </div>
             <div className="flex justify-center space-x-4 mb-8">
@@ -538,7 +549,3 @@ export default function HomePage() {
 }
 
     
-
-    
-
-
