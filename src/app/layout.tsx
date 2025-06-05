@@ -20,9 +20,7 @@ export const metadata: Metadata = {
   description: "Henry's modern and sleek personal developer portfolio built with Next.js and Tailwind CSS.",
   keywords: ['developer', 'portfolio', 'react', 'nextjs', 'typescript', 'tailwindcss'],
   other: {
-    'custom-sample-tag': 'This is a sample value for a custom meta tag. You can replace this!',
-    // You can add more custom meta tags here, for example:
-    // 'another-tag': 'another value',
+    'google-adsense-account': 'ca-pub-5456128619323706',
   }
 };
 
